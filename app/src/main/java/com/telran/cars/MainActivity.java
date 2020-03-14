@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -32,16 +33,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if (id == R.id.tit1) {
-                    Toast.makeText(MainActivity.this, "title 1", Toast.LENGTH_SHORT).show();
+                if (id == R.id.search) {
+                    Toast.makeText(MainActivity.this, "1", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.letTheCarWork) {
+                    Toast.makeText(MainActivity.this, "2", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.login) {
+                    Toast.makeText(MainActivity.this, "3", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.singUp) {
+                    Toast.makeText(MainActivity.this, "4", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.favorites) {
+                    Toast.makeText(MainActivity.this, "5", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.termsOfUse) {
+                    Toast.makeText(MainActivity.this, "6", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
         });
     }
+    //    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.search_menu,menu);
+//        MenuItem search = menu.findItem(R.id.searchRight);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu,menu);
+        MenuItem search = menu.findItem(R.id.searchRight);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.searchRight){
+            Toast.makeText(MainActivity.this,"saerch right",Toast.LENGTH_SHORT).show();
+        }
         return abdt.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 }
