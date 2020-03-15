@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frameLayoutStart,FragmentStart.newInstance())
+                .replace(R.id.frameLayoutEnd,FragmentEnd.newInstance())
                 .commit();
         dl = findViewById(R.id.dl);
         abdt = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);

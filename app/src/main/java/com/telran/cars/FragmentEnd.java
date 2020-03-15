@@ -10,15 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class FragmentStart extends Fragment {
-    public static FragmentStart newInstance(){
-        FragmentStart fragmentStart = new FragmentStart();
-        return fragmentStart;
+public class FragmentEnd extends Fragment {
+    public static FragmentEnd newInstance(){
+        FragmentEnd fragmentEnd = new FragmentEnd();
+        return fragmentEnd;
     }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.start_layout,container,false);
+        View view = inflater.inflate(R.layout.end_layout,container,false);
         return view;
     }
 }
