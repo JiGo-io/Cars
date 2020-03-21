@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -16,10 +17,20 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle abdt;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frameLayoutStart,FragmentStart.newInstance())
+                .replace(R.id.frameLayoutEnd,FragmentEnd.newInstance())
+                .commit();
         dl = findViewById(R.id.dl);
         abdt = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
         abdt.setDrawerIndicatorEnabled(true);
@@ -50,12 +61,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.search_menu,menu);
-//        MenuItem search = menu.findItem(R.id.searchRight);
-//        return super.onCreateOptionsMenu(menu);
-//    }
 
 
     @Override
