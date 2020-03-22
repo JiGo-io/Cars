@@ -1,18 +1,23 @@
 package com.telran.cars.data.provider.web;
 
+import com.telran.cars.data.dto.BookedCarsDtoForUser;
 import com.telran.cars.data.dto.CarForUsersDto;
 import com.telran.cars.data.dto.CarFullDto;
 import com.telran.cars.data.dto.CarFullUploadRequestDto;
+import com.telran.cars.data.dto.CarsFiltersDto;
 import com.telran.cars.data.dto.CommentDto;
 import com.telran.cars.data.dto.CommentPostDto;
 import com.telran.cars.data.dto.ImageDto;
 import com.telran.cars.data.dto.JsonNode;
+import com.telran.cars.data.dto.OwnerCarDtoForCar;
 import com.telran.cars.data.dto.PageResponseWithFilter;
 import com.telran.cars.data.dto.RegistrationDto;
 import com.telran.cars.data.dto.ReservedPeriodDto;
 import com.telran.cars.data.dto.UserBaseDto;
 import com.telran.cars.data.dto.UserDtoForUser;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Map;
 
 import io.reactivex.Single;
@@ -34,15 +39,15 @@ public interface ApiRx {
 
     //Car_Controller
     @GET("/car")
-    Single<Response<CarFullDto>> getCarById(@Query("serial_number") String carId);
+    Single<Response<CarFullDto>> getCarById(@Query("serial_number") String serialNumber);
 
     @POST("/car")
     Single<Response<CarFullDto>> addNewCar(@Header("Authorization") String token,
-                                           @Body CarFullUploadRequestDto body);
+                                           @Body CarFullUploadRequestDto dto);
 
     @PUT("/car")
     Single<Response<CarFullDto>> carUpdate(@Header("Authorization") String token,
-                                           @Body CarFullUploadRequestDto body,
+                                           @Body CarFullUploadRequestDto dto,
                                            @Query("serial_number") String serialNumber);
 
     @DELETE("/car")
@@ -50,7 +55,7 @@ public interface ApiRx {
                                @Query("serial_number") String serialNumber);
 
     @GET("/car/best")
-    Single<Response<CarFullDto>> getThreeBestCar();
+    Single<Response<CarForUsersDto[]>> getThreeBestCar();
 
     @GET("/user/cars")
     Single<Response<CarFullDto>> getOwnerCars(@Header("Authorization") String token);
@@ -68,7 +73,7 @@ public interface ApiRx {
     Single<Response<JsonNode>> getFilters();
 
     @GET("/search")
-    Single<Response<CarForUsersDto>> getCarByDateLocationPrice(@Query("ascending") Boolean ascending,
+    Single<Response<CarForUsersDto[]>> getCarByDateLocationPrice(@Query("ascending") Boolean ascending,
                                                                @Query("current_page") Integer currentPage,
                                                                @Query("end_date") String endDate,
                                                                @Query("items_on_page") Integer itemsOnPage,
@@ -98,7 +103,7 @@ public interface ApiRx {
                                                                @Query("year") String year);
 
     @GET("/search/filters")
-    Single<Response<CarForUsersDto>> getCarByFilter(@Query("current_page") Integer currentPage,
+    Single<Response<CarsFiltersDto[]>> getCarByFilter(@Query("current_page") Integer currentPage,
                                                     @Query("fuel") String fuel,
                                                     @Query("gear") String gear,
                                                     @Query("items_on_page") Integer itemsOnPage,
@@ -108,7 +113,7 @@ public interface ApiRx {
                                                     @Query("year") String year);
 
     @GET("/search/geo")
-    Single<Response<CarForUsersDto>> getCarByLocation(@Query("current_page") Integer currentPage,
+    Single<Response<CarsFiltersDto[]>> getCarByLocation(@Query("current_page") Integer currentPage,
                                                       @Query("items_on_page") Integer itemsOnPage,
                                                       @Query("latitude") Number latitude,
                                                       @Query("longitude") Number longitude,
@@ -121,7 +126,7 @@ public interface ApiRx {
                                                @Query("serial_number") String serialNumber);
 
     @GET("/comments")
-    Single<Response<CommentDto>> getLatestComment();
+    Single<Response<CommentDto[]>> getLatestComment();
 
     //Filter_Update_Controller
     @POST("/filter/update")
@@ -137,7 +142,8 @@ public interface ApiRx {
 
     //Reservation_Controller
     @POST("/car/payment")
-    Single<Response> paymentForRegistration(@Header("Authorization") String token, @Query("bookedId") String bookedId);
+    Single<Response> paymentForRegistration(@Header("Authorization") String token,
+                                            @Query("bookedId") String bookedId);
 
     @POST("/car/reservation")
     Single<Response<CarFullDto>> reservationCarById(@Header("Authorization") String token,
@@ -150,33 +156,36 @@ public interface ApiRx {
                                                          @Query("start_date_time") String startDateTime);
 
     @POST("/user/free")
-    Single<Response<CarFullDto>> unlockCarById(@Header("Authorization") String token,
-                                               @Body ReservedPeriodDto dto,
-                                               @Query("serial_number") String serialNumber);
+    Single<Response<OwnerCarDtoForCar>> unlockCarById(@Header("Authorization") String token,
+                                                      @Body ReservedPeriodDto[] dto,
+                                                      @Query("serial_number") String serialNumber);
 
     @POST("/user/reservation")
-    Single<Response<CarFullDto>> lockCarById(@Header("Authorization") String token,
-                                             @Body ReservedPeriodDto dto,
+    Single<Response<OwnerCarDtoForCar>> lockCarById(@Header("Authorization") String token,
+                                             @Body ReservedPeriodDto[] dto,
                                              @Query("serial_number") String serialNumber);
 
     //User_Controller
     @POST("/activate/{code}")
-    Single<Response> activateUser(@Path("code") String code);
+    Single<Response<String>> activateUser(@Path("code") String code);
 
     @POST("/registration")
-    Single<Response<UserDtoForUser>> registration(@Header("Authorization") String token, @Body RegistrationDto registrationDto);
+    Single<Response<UserDtoForUser>> registration(@Header("Authorization") String token,
+                                                  @Body RegistrationDto registrationDto);
 
     @PUT("/user")
-    Single<Response<UserDtoForUser>> updateUser(@HeaderMap Map<String, String> headers, @Body UserBaseDto userBaseDto);
+    Single<Response<UserDtoForUser>> updateUser(@HeaderMap Map<String, String> headers,
+                                                @Body UserBaseDto userBaseDto);
 
     @DELETE("/user")
     Single<Response> deleteUser(@Header("Authorization") String token);
 
     @GET("/user/booked")
-    Single<Response> getBookedList(@Header("Authorization") String token);
+    Single<Response <ArrayList<BookedCarsDtoForUser>>> getBookedList(@Header("Authorization") String token);
 
     @GET("/user/invoice")
-    Single<Response> getInvoice(@Header("Authorization") String token, @Query("order_id") String orderId);
+    Single<Response> getInvoice(@Header("Authorization") String token,
+                                @Query("order_id") String orderId);
 
     @GET("/user/login")
     Single<Response<UserDtoForUser>> authorizationUser(@Header("Authorization") String token);

@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.telran.cars.presentation.main.view.FragmentEnd;
+import com.telran.cars.presentation.main.view.FragmentStart;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
@@ -28,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayoutStart,FragmentStart.newInstance())
-                .replace(R.id.frameLayoutEnd,FragmentEnd.newInstance())
+                .replace(R.id.frameLayoutStart, FragmentStart.newInstance())
+                .replace(R.id.frameLayoutEnd, FragmentEnd.newInstance())
                 .commit();
         dl = findViewById(R.id.dl);
         abdt = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
