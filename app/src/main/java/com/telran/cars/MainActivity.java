@@ -27,11 +27,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
+        FragmentStart fragmentStart = new FragmentStart();
+        FragmentEnd fragmentEnd = new FragmentEnd();
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayoutStart, FragmentStart.newInstance())
-                .replace(R.id.frameLayoutEnd, FragmentEnd.newInstance())
+                .replace(R.id.frameLayoutStart, fragmentStart)
+                        .replace(R.id.frameLayoutEnd, fragmentEnd)
                 .commit();
         dl = findViewById(R.id.dl);
         abdt = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
