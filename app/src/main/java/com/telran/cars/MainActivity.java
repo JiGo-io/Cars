@@ -12,11 +12,12 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.telran.cars.presentation.main.view.FragmentEnd;
+import com.telran.cars.presentation.main.view.FragmentStart;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle abdt;
-
 
 
     @Override
@@ -26,10 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayoutStart,FragmentStart.newInstance())
-                .replace(R.id.frameLayoutEnd,FragmentEnd.newInstance())
+                .replace(R.id.frameLayoutStart, FragmentStart.newInstance())
+                .replace(R.id.frameLayoutEnd, FragmentEnd.newInstance())
                 .commit();
         dl = findViewById(R.id.dl);
         abdt = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
@@ -65,15 +65,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu,menu);
+        getMenuInflater().inflate(R.menu.search_menu, menu);
         MenuItem search = menu.findItem(R.id.searchRight);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.searchRight){
-            Toast.makeText(MainActivity.this,"saerch right",Toast.LENGTH_SHORT).show();
+        if (item.getItemId() == R.id.searchRight) {
+            Toast.makeText(MainActivity.this, "saerch right", Toast.LENGTH_SHORT).show();
         }
         return abdt.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
