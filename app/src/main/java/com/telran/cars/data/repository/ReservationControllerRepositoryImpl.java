@@ -5,6 +5,7 @@ import android.util.Log;
 import com.telran.cars.data.dto.CarFullDto;
 import com.telran.cars.data.dto.OwnerCarDtoForCar;
 import com.telran.cars.data.dto.RegistrationDto;
+import com.telran.cars.data.dto.ReservationDto;
 import com.telran.cars.data.dto.ReservedPeriodDto;
 import com.telran.cars.data.provider.store.StoreProvider;
 import com.telran.cars.data.provider.web.ApiRx;
@@ -32,7 +33,7 @@ public class ReservationControllerRepositoryImpl implements ReservationControlle
     }
 
     @Override
-    public Completable reservationCarById(String token, RegistrationDto dto, String serialNumber) {
+    public Completable reservationCarById(String token, ReservationDto dto, String serialNumber) {
         return Completable.fromSingle(
                 api.reservationCarById(token,dto,serialNumber).doOnSuccess(this::onReservationCarByIdSuccess)
         );

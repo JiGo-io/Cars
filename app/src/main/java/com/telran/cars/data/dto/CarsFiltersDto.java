@@ -59,194 +59,77 @@ public class CarsFiltersDto {
     public String getAbout() {
         return about;
     }
-
-    public void setAbout(String about) {
-        this.about = about;
-    }
-
     public BookedPeriodDateDto getBooked_periods() {
         return booked_periods;
     }
-
-    public void setBooked_periods(BookedPeriodDateDto booked_periods) {
-        this.booked_periods = booked_periods;
-    }
-
     public String getCar_class() {
         return car_class;
     }
-
-    public void setCar_class(String car_class) {
-        this.car_class = car_class;
-    }
-
     public List<CommentDtoForFilters> getComments() {
         return comments;
     }
-
-    public void setComments(List<CommentDtoForFilters> comments) {
-        this.comments = comments;
-    }
-
     public double getDistance_included() {
         return distance_included;
     }
-
-    public void setDistance_included(double distance_included) {
-        this.distance_included = distance_included;
-    }
-
     public int getDoors() {
         return doors;
     }
-
-    public void setDoors(int doors) {
-        this.doors = doors;
-    }
-
     public String getEngine() {
         return engine;
     }
-
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
-
     public String[] getFeatures() {
         return features;
     }
-
-    public void setFeatures(String[] features) {
-        this.features = features;
-    }
-
     public String getFuel() {
         return fuel;
     }
-
-    public void setFuel(String fuel) {
-        this.fuel = fuel;
-    }
-
     public float getFuel_consumption() {
         return fuel_consumption;
     }
-
-    public void setFuel_consumption(float fuel_consumption) {
-        this.fuel_consumption = fuel_consumption;
-    }
-
     public String getGear() {
         return gear;
     }
-
-    public void setGear(String gear) {
-        this.gear = gear;
-    }
-
     public int getHorsepower() {
         return horsepower;
     }
-
-    public void setHorsepower(int horsepower) {
-        this.horsepower = horsepower;
-    }
-
     public String[] getImage_url() {
         return image_url;
     }
-
-    public void setImage_url(String[] image_url) {
-        this.image_url = image_url;
-    }
-
     public String getMake() {
         return make;
     }
-
-    public void setMake(String make) {
-        this.make = make;
-    }
-
     public String getModel() {
         return model;
     }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
     public OwnerDto getOwner() {
         return owner;
     }
-
-    public void setOwner(OwnerDto owner) {
-        this.owner = owner;
-    }
-
     public PickUpPlaceDto getPick_up_place() {
         return pick_up_place;
     }
-
-    public void setPick_up_place(PickUpPlaceDto pick_up_place) {
-        this.pick_up_place = pick_up_place;
-    }
-
     public double getPrice_per_day() {
         return price_per_day;
     }
-
-    public void setPrice_per_day(double price_per_day) {
-        this.price_per_day = price_per_day;
-    }
-
     public int getSeats() {
         return seats;
     }
-
-    public void setSeats(int seats) {
-        this.seats = seats;
-    }
-
     public String getSerial_number() {
         return serial_number;
     }
-
-    public void setSerial_number(String serial_number) {
-        this.serial_number = serial_number;
-    }
-
     public StatisticsDto getStatistics() {
         return statistics;
     }
-
-    public void setStatistics(StatisticsDto statistics) {
-        this.statistics = statistics;
-    }
-
     public int getTorque() {
         return torque;
     }
-
-    public void setTorque(int torque) {
-        this.torque = torque;
-    }
-
     public String getWheels_drive() {
         return wheels_drive;
     }
-
-    public void setWheels_drive(String wheels_drive) {
-        this.wheels_drive = wheels_drive;
-    }
-
     public String getYear() {
         return year;
     }
 
-    public void setYear(String year) {
-        this.year = year;
-    }
+
 
     @Override
     public String toString() {

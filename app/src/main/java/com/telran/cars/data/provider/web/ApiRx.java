@@ -12,6 +12,7 @@ import com.telran.cars.data.dto.JsonNode;
 import com.telran.cars.data.dto.OwnerCarDtoForCar;
 import com.telran.cars.data.dto.PageResponseWithFilter;
 import com.telran.cars.data.dto.RegistrationDto;
+import com.telran.cars.data.dto.ReservationDto;
 import com.telran.cars.data.dto.ReservedPeriodDto;
 import com.telran.cars.data.dto.UserBaseDto;
 import com.telran.cars.data.dto.UserDtoForUser;
@@ -73,7 +74,7 @@ public interface ApiRx {
     Single<Response<JsonNode>> getFilters();
 
     @GET("/search")
-    Single<Response<CarForUsersDto[]>> getCarByDateLocationPrice(@Query("ascending") Boolean ascending,
+    Single<Response<CarsFiltersDto>> getCarByDateLocationPrice(@Query("ascending") Boolean ascending,
                                                                @Query("current_page") Integer currentPage,
                                                                @Query("end_date") String endDate,
                                                                @Query("items_on_page") Integer itemsOnPage,
@@ -147,7 +148,7 @@ public interface ApiRx {
 
     @POST("/car/reservation")
     Single<Response<CarFullDto>> reservationCarById(@Header("Authorization") String token,
-                                                    @Body RegistrationDto dto,
+                                                    @Body ReservationDto dto,
                                                     @Query("serial_number") String serialNumber);
 
     @DELETE("/car/reservation")

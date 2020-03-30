@@ -24,6 +24,10 @@ public class CarFilterControllerRepositoryImpl implements CarFilterControllerRep
         this.storeProvider = storeProvider;
     }
 
+    public CarFilterControllerRepositoryImpl(ApiRx api) {
+        this.api = api;
+    }
+
     @Override
     public Completable getFilters() {
         return Completable.fromSingle(
@@ -50,7 +54,7 @@ public class CarFilterControllerRepositoryImpl implements CarFilterControllerRep
                         longitude,
                         maxAmount,
                         minAmount,
-                        startDate).doOnSuccess(this::onGetCarByDateLocationPriceSuccess)
+                        startDate).doOnSuccess(response -> onGetCarByDateLocationPriceSuccess(response))
         );
     }
 
@@ -142,10 +146,10 @@ public class CarFilterControllerRepositoryImpl implements CarFilterControllerRep
 
     }
 
-    private void onGetCarByDateLocationPriceSuccess(Response<CarForUsersDto[]> response) throws IOException {
+    private void onGetCarByDateLocationPriceSuccess(Response<CarsFiltersDto> response) throws IOException {
         if (response.isSuccessful()) {
 //            storeProvider.saveToken(response.body().getToken());
-            Log.d("TAG", "onGetCarByDateLocationPriceSuccess: " + response.body().toString());
+            Log.d("TAG", "onGetCarByDateLocationPriceSuccess: " + response.body());
         } else if (response.code() == 404) {
             throw new RuntimeException(response.errorBody().string());
         } else {
