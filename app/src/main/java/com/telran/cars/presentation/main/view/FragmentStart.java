@@ -62,7 +62,7 @@ public class FragmentStart extends MvpAppCompatFragment implements MainFragment,
         Number maxAmount = 10000.0;
         Number minAmount = 0.0;
 //        String startDate = inputFrom.getText().toString();
-        String startDate = "2020-04-01 12:00";
+        String startDate = "2020-04-10 12:00";
         presentor.getCarByDateLocationPrice(ascending,currentPage,endDate,itemsOnPage,latitude,longitude,maxAmount,minAmount,startDate);
     }
     }

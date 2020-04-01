@@ -1,19 +1,11 @@
 package com.telran.cars.data.dto;
 
 public class StatisticsDto {
-    private String rating;
     private String trips;
+    private String rating;
 
-    public StatisticsDto(String rating, String trips) {
-        this.rating = rating;
+    public StatisticsDto(String trips, String rating) {
         this.trips = trips;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
         this.rating = rating;
     }
 
@@ -25,11 +17,19 @@ public class StatisticsDto {
         this.trips = trips;
     }
 
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
     @Override
     public String toString() {
         return "StatisticsDto{" +
-                "rating='" + rating + '\'' +
-                ", trips='" + trips + '\'' +
+                "trips='" + trips + '\'' +
+                ", rating='" + rating + '\'' +
                 '}';
     }
 }

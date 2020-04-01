@@ -2,10 +2,10 @@ package com.telran.cars.data.repository;
 
 import android.util.Log;
 
-import com.telran.cars.data.dto.CarForUsersDto;
 import com.telran.cars.data.dto.CarsFiltersDto;
 import com.telran.cars.data.dto.JsonNode;
 import com.telran.cars.data.dto.PageResponseWithFilter;
+import com.telran.cars.data.dto.ResponseCarsFiltersDto;
 import com.telran.cars.data.provider.store.StoreProvider;
 import com.telran.cars.data.provider.web.ApiRx;
 
@@ -146,10 +146,10 @@ public class CarFilterControllerRepositoryImpl implements CarFilterControllerRep
 
     }
 
-    private void onGetCarByDateLocationPriceSuccess(Response<CarsFiltersDto> response) throws IOException {
+    private void onGetCarByDateLocationPriceSuccess(Response<ResponseCarsFiltersDto> response) throws IOException {
         if (response.isSuccessful()) {
 //            storeProvider.saveToken(response.body().getToken());
-            Log.d("TAG", "onGetCarByDateLocationPriceSuccess: " + response.body());
+            Log.d("TAG", "onGetCarByDateLocationPriceSuccess: " + response.body().toString());
         } else if (response.code() == 404) {
             throw new RuntimeException(response.errorBody().string());
         } else {

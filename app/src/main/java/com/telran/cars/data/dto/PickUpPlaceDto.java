@@ -1,13 +1,21 @@
 package com.telran.cars.data.dto;
 
 public class PickUpPlaceDto {
+    private String place_id;
     private double latitude;
     private double longitude;
-    private String place_id;
 
-    public PickUpPlaceDto(double latitude, double longitude, String place_id) {
+    public PickUpPlaceDto(String place_id, double latitude, double longitude) {
+        this.place_id = place_id;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public String getPlace_id() {
+        return place_id;
+    }
+
+    public void setPlace_id(String place_id) {
         this.place_id = place_id;
     }
 
@@ -15,32 +23,24 @@ public class PickUpPlaceDto {
         return latitude;
     }
 
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public String getPlace_id() {
-        return place_id;
-    }
-
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public void setPlace_id(String place_id) {
-        this.place_id = place_id;
-    }
-
     @Override
     public String toString() {
         return "PickUpPlaceDto{" +
-                "latitude=" + latitude +
+                "place_id='" + place_id + '\'' +
+                ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", place_id='" + place_id + '\'' +
                 '}';
     }
 }
