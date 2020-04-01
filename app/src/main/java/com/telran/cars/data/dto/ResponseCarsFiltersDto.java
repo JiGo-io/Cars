@@ -1,25 +1,17 @@
 package com.telran.cars.data.dto;
 
-import java.util.List;
+import java.util.Arrays;
 
-public class PageResponse {
-    private List<CarsFiltersDto> cars;
-    private String current_page;
-    private String items_on_page;
-    private String items_total;
+public class ResponseCarsFiltersDto {
+    String current_page;
+    String items_on_page;
+    String items_total;
+    CarsFiltersDto[] cars;
 
-    public PageResponse(List<CarsFiltersDto> cars, String current_page, String items_on_page, String items_total) {
-        this.cars = cars;
+    public ResponseCarsFiltersDto(String current_page, String items_on_page, String items_total, CarsFiltersDto[] cars) {
         this.current_page = current_page;
         this.items_on_page = items_on_page;
         this.items_total = items_total;
-    }
-
-    public List<CarsFiltersDto> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<CarsFiltersDto> cars) {
         this.cars = cars;
     }
 
@@ -47,13 +39,21 @@ public class PageResponse {
         this.items_total = items_total;
     }
 
+    public CarsFiltersDto[] getCars() {
+        return cars;
+    }
+
+    public void setCars(CarsFiltersDto[] cars) {
+        this.cars = cars;
+    }
+
     @Override
     public String toString() {
-        return "PageResponse{" +
-                "cars=" + cars +
-                ", current_page='" + current_page + '\'' +
-                ", items_on_page='" + items_on_page + '\'' +
-                ", items_total='" + items_total + '\'' +
+        return "ResponseCarsFiltersDto{" +
+                "current_page=" + current_page +
+                ", items_on_page=" + items_on_page +
+                ", items_total=" + items_total +
+                ", cars=" + Arrays.toString(cars) +
                 '}';
     }
 }

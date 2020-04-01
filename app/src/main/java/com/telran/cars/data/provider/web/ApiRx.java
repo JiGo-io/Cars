@@ -14,11 +14,11 @@ import com.telran.cars.data.dto.PageResponseWithFilter;
 import com.telran.cars.data.dto.RegistrationDto;
 import com.telran.cars.data.dto.ReservationDto;
 import com.telran.cars.data.dto.ReservedPeriodDto;
+import com.telran.cars.data.dto.ResponseCarsFiltersDto;
 import com.telran.cars.data.dto.UserBaseDto;
 import com.telran.cars.data.dto.UserDtoForUser;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Map;
 
 import io.reactivex.Single;
@@ -74,15 +74,15 @@ public interface ApiRx {
     Single<Response<JsonNode>> getFilters();
 
     @GET("/search")
-    Single<Response<CarsFiltersDto>> getCarByDateLocationPrice(@Query("ascending") Boolean ascending,
-                                                               @Query("current_page") Integer currentPage,
-                                                               @Query("end_date") String endDate,
-                                                               @Query("items_on_page") Integer itemsOnPage,
-                                                               @Query("latitude") Number latitude,
-                                                               @Query("longitude") Number longitude,
-                                                               @Query("max_amount") Number maxAmount,
-                                                               @Query("min_amount") Number minAmount,
-                                                               @Query("start_date") String startDate);
+    Single<Response<ResponseCarsFiltersDto>> getCarByDateLocationPrice(@Query("ascending") Boolean ascending,
+                                                                @Query("current_page") Integer currentPage,
+                                                                @Query("end_date") String endDate,
+                                                                @Query("items_on_page") Integer itemsOnPage,
+                                                                @Query("latitude") Number latitude,
+                                                                @Query("longitude") Number longitude,
+                                                                @Query("max_amount") Number maxAmount,
+                                                                @Query("min_amount") Number minAmount,
+                                                                @Query("start_date") String startDate);
 
     @GET("/search/all")
     Single<Response<PageResponseWithFilter>> searchAllContains(@Query("ascending") Boolean ascending,
@@ -105,13 +105,13 @@ public interface ApiRx {
 
     @GET("/search/filters")
     Single<Response<CarsFiltersDto[]>> getCarByFilter(@Query("current_page") Integer currentPage,
-                                                    @Query("fuel") String fuel,
-                                                    @Query("gear") String gear,
-                                                    @Query("items_on_page") Integer itemsOnPage,
-                                                    @Query("make") String make,
-                                                    @Query("model") String model,
-                                                    @Query("wheels_drive") String wheelsDrive,
-                                                    @Query("year") String year);
+                                                      @Query("fuel") String fuel,
+                                                      @Query("gear") String gear,
+                                                      @Query("items_on_page") Integer itemsOnPage,
+                                                      @Query("make") String make,
+                                                      @Query("model") String model,
+                                                      @Query("wheels_drive") String wheelsDrive,
+                                                      @Query("year") String year);
 
     @GET("/search/geo")
     Single<Response<CarsFiltersDto[]>> getCarByLocation(@Query("current_page") Integer currentPage,

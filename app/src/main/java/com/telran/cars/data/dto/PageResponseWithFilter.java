@@ -1,8 +1,6 @@
 package com.telran.cars.data.dto;
 
 
-import com.telran.cars.data.dto.CarsFiltersDto;
-
 import java.util.List;
 
 public class PageResponseWithFilter {

@@ -2,13 +2,13 @@ package com.telran.cars.data.dto;
 
 class OwnerDto {
     private String first_name;
-    private String registration_date;
     private String second_name;
+    private String registration_date;
 
-    public OwnerDto(String first_name, String registration_date, String second_name) {
+    public OwnerDto(String first_name, String second_name, String registration_date) {
         this.first_name = first_name;
-        this.registration_date = registration_date;
         this.second_name = second_name;
+        this.registration_date = registration_date;
     }
 
     public String getFirst_name() {
@@ -19,14 +19,6 @@ class OwnerDto {
         this.first_name = first_name;
     }
 
-    public String getRegistration_date() {
-        return registration_date;
-    }
-
-    public void setRegistration_date(String registration_date) {
-        this.registration_date = registration_date;
-    }
-
     public String getSecond_name() {
         return second_name;
     }
@@ -35,12 +27,20 @@ class OwnerDto {
         this.second_name = second_name;
     }
 
+    public String getRegistration_date() {
+        return registration_date;
+    }
+
+    public void setRegistration_date(String registration_date) {
+        this.registration_date = registration_date;
+    }
+
     @Override
     public String toString() {
         return "OwnerDto{" +
                 "first_name='" + first_name + '\'' +
-                ", registration_date='" + registration_date + '\'' +
                 ", second_name='" + second_name + '\'' +
+                ", registration_date='" + registration_date + '\'' +
                 '}';
     }
 }
