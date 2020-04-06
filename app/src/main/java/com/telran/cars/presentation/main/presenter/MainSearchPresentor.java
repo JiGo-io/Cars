@@ -4,12 +4,13 @@ import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.telran.cars.App;
 import com.telran.cars.business.withoutauth.WithoutAuthInteractor;
-import com.telran.cars.di.DependenceFactory;
-import com.telran.cars.di.DependenceFactoryMain;
+import com.telran.cars.di.withoutauth.WithoutAuthModule;
 import com.telran.cars.presentation.main.view.MainFragment;
 
-import io.reactivex.Scheduler;
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -17,11 +18,12 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class MainSearchPresentor extends MvpPresenter<MainFragment> {
     private static final String TAG = "MainSearchPresentor";
+    @Inject
     WithoutAuthInteractor interactor;
     Disposable disposable;
 
     public MainSearchPresentor() {
-        this.interactor = DependenceFactoryMain.getInstance().getWithoutAuthInteractor();
+        App.get().plus(new WithoutAuthModule()).inject(this);
     }
 
     public void getCarByDateLocationPrice(Boolean ascending,
@@ -39,19 +41,30 @@ public class MainSearchPresentor extends MvpPresenter<MainFragment> {
             .subscribe(() -> getSuccess(),throwable -> {
                 Log.e(TAG, "getCarByDateLocationPrice: ", throwable );
             });
-
-
     }
 
     private void getSuccess() {
         getViewState().showNextView();
     }
+    public void getThreeBestCar(){
+        disposable = interactor.getThreeBestCar()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> getThreeBestCarSuccess(), throwable -> {
+                    Log.e(TAG, "getThreeBestCar: ", throwable);
+                });
+    }
+
+    private void getThreeBestCarSuccess() {
+        Log.d(TAG, "getThreeBestCarSuccess: success");
+    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposable != null){
-            disposable.dispose();
-        }
+//        if (disposable != null){
+//            disposable.dispose();
+//        }
+        App.get().clearWithoutAuthComponent();
     }
 }

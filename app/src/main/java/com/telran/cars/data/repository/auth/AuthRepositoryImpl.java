@@ -1,4 +1,4 @@
-package com.telran.cars.data.auth;
+package com.telran.cars.data.repository.auth;
 
 import android.util.Log;
 
@@ -23,6 +23,7 @@ public class AuthRepositoryImpl implements AuthRepository {
 
     @Override
     public Completable onLogin(String token) {
+        Log.d("MA_TAG", "onLogin: " + token);
         return Completable.fromSingle(
                 api.authorizationUser(token).doOnSuccess(this::onAuthorizationSuccess)
         );

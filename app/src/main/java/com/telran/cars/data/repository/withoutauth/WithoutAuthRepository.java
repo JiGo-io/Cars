@@ -1,9 +1,8 @@
-package com.telran.cars.business.withoutauth;
+package com.telran.cars.data.repository.withoutauth;
 
 import io.reactivex.Completable;
 
-public interface WithoutAuthInteractor {
-
+public interface WithoutAuthRepository {
     Completable getCarByDateLocationPrice(Boolean ascending,
                                           Integer currentPage,
                                           String endDate,

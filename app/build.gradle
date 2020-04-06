@@ -60,4 +60,8 @@ dependencies {
     annotationProcessor 'tech.schoolhelper:moxy-x-compiler:1.7.0'
     implementation 'tech.schoolhelper:moxy-x-android:1.7.0'
     implementation 'tech.schoolhelper:moxy-x-androidx:1.7.0'
+
+    //Dagger 2
+    implementation 'com.google.dagger:dagger:2.27'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
 }

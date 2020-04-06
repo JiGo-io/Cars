@@ -16,6 +16,4 @@ public interface CommentFilterImageLoggerRepository {
     //Image_Download_Controller
     Completable downloadImage(ImageDto image);
 
-    //Logger_Controller
-    Completable getLoggers(String password);
 }

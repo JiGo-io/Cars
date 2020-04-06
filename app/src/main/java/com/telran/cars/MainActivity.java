@@ -9,11 +9,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.telran.cars.presentation.main.view.FragmentEnd;
 import com.telran.cars.presentation.main.view.FragmentStart;
+import com.telran.cars.presentation.main.view.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
@@ -25,12 +27,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayoutStart, FragmentStart.newInstance())
-                .replace(R.id.frameLayoutEnd, FragmentEnd.newInstance())
-                .commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayoutStart, FragmentStart.newInstance())
+                    .replace(R.id.frameLayoutEnd, FragmentEnd.newInstance())
+                    .commit();
+        }
         dl = findViewById(R.id.dl);
         abdt = new ActionBarDrawerToggle(this, dl, R.string.open, R.string.close);
         abdt.setDrawerIndicatorEnabled(true);
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         dl.addDrawerListener(abdt);
         abdt.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -49,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.letTheCarWork) {
                     Toast.makeText(MainActivity.this, "2", Toast.LENGTH_SHORT).show();
                 } else if (id == R.id.login) {
-                    Toast.makeText(MainActivity.this, "3", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "3", Toast.LENGTH_SHORT).show();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.root, LoginFragment.newInstance())
+                            .commit();
                 } else if (id == R.id.singUp) {
                     Toast.makeText(MainActivity.this, "4", Toast.LENGTH_SHORT).show();
                 } else if (id == R.id.favorites) {
