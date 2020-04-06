@@ -1,4 +1,4 @@
-package com.telran.cars.data.auth;
+package com.telran.cars.data.repository.auth;
 
 import io.reactivex.Completable;
 

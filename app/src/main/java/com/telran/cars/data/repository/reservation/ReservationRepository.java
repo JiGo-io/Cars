@@ -1,19 +1,11 @@
-package com.telran.cars.data.repository;
+package com.telran.cars.data.repository.reservation;
+
+import com.telran.cars.data.dto.ReservationDto;
+import com.telran.cars.data.dto.ReservedPeriodDto;
 
 import io.reactivex.Completable;
 
-public interface CarFilterControllerRepository {
-    Completable getFilters();
-
-    Completable getCarByDateLocationPrice(Boolean ascending,
-                                          Integer currentPage,
-                                          String endDate,
-                                          Integer itemsOnPage,
-                                          Number latitude,
-                                          Number longitude,
-                                          Number maxAmount,
-                                          Number minAmount,
-                                          String startDate);
+public interface ReservationRepository {
 
     Completable searchAllContains(Boolean ascending,
                                   Integer currentPage,
@@ -33,7 +25,7 @@ public interface CarFilterControllerRepository {
                                   String wheelsDrive,
                                   String year);
 
-    Completable getCarByFilter(Integer currentPage,
+    Completable searchByFilter(Integer currentPage,
                                String fuel,
                                String gear,
                                Integer itemsOnPage,
@@ -42,9 +34,17 @@ public interface CarFilterControllerRepository {
                                String wheelsDrive,
                                String year);
 
-    Completable getCarByLocation(Integer currentPage,
+    Completable searchByLocation(Integer currentPage,
                                  Integer itemsOnPage,
                                  Number latitude,
                                  Number longitude,
                                  Number radius);
+
+    // Reservation_Controller
+
+    Completable paymentForReservation(String token, String bookedId);
+    Completable reservationCarById(String token, ReservationDto dto, String serialNumber);
+    Completable reservationCancellation(String token, String serialNumber, String startDateTime);
+    Completable unlockCarById(String token, ReservedPeriodDto[] dto, String serialNumber);
+    Completable lockCarById(String token, ReservedPeriodDto[] dto, String serialNumber);
 }

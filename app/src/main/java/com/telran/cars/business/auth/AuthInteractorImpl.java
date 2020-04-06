@@ -1,7 +1,6 @@
 package com.telran.cars.business.auth;
 
-import com.telran.cars.data.auth.AuthRepository;
-import com.telran.cars.data.repository.UserControllerRepository;
+import com.telran.cars.data.repository.auth.AuthRepository;
 
 import io.reactivex.Completable;
 
@@ -13,8 +12,10 @@ public class AuthInteractorImpl implements AuthInteractor {
     }
 
     @Override
-    public Completable onLogin(String email, String password) {
-        return null;
+    public Completable onLogin(String token) {
+
+        return repository.onLogin(token);
+
     }
 
     @Override

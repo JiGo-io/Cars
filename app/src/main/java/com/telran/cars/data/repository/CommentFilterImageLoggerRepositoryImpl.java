@@ -51,12 +51,6 @@ public class CommentFilterImageLoggerRepositoryImpl implements CommentFilterImag
         );
     }
 
-    @Override
-    public Completable getLoggers(String password) {
-        return Completable.fromSingle(
-                api.getLoggers(password).doOnSuccess(this::onGetLoggersSuccess)
-        );
-    }
 
     private void onAddNewCommentSuccess(Response<CommentDto> response) throws IOException {
         if (response.isSuccessful()) {
@@ -102,18 +96,6 @@ public class CommentFilterImageLoggerRepositoryImpl implements CommentFilterImag
             throw new RuntimeException(response.errorBody().string());
         } else {
             Log.e("TAG", "onDownloadImageSuccess: " + response.errorBody().string());
-            throw new RuntimeException("Server error! Call to Support");
-        }
-    }
-
-    private void onGetLoggersSuccess(Response<String> response) throws IOException {
-        if (response.isSuccessful()) {
-//            storeProvider.saveToken(response.body().getToken());
-            Log.d("TAG", "onGetLoggersSuccess: " + response.body().toString());
-        } else if (response.code() == 400 || response.code() == 401 || response.code() == 404) {
-            throw new RuntimeException(response.errorBody().string());
-        } else {
-            Log.e("TAG", "onGetLoggersSuccess: " + response.errorBody().string());
             throw new RuntimeException("Server error! Call to Support");
         }
     }

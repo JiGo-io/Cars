@@ -63,7 +63,9 @@ public class FragmentStart extends MvpAppCompatFragment implements MainFragment,
         Number minAmount = 0.0;
 //        String startDate = inputFrom.getText().toString();
         String startDate = "2020-04-10 12:00";
-        presentor.getCarByDateLocationPrice(ascending,currentPage,endDate,itemsOnPage,latitude,longitude,maxAmount,minAmount,startDate);
+//        presentor.getCarByDateLocationPrice(ascending,currentPage,endDate,itemsOnPage,latitude,longitude,maxAmount,minAmount,startDate);
+//        presentor.getThreeBestCar();
+
     }
     }
 
@@ -85,7 +87,7 @@ public class FragmentStart extends MvpAppCompatFragment implements MainFragment,
     @Override
     public void showNextView() {
         Objects.requireNonNull(getFragmentManager()).beginTransaction()
-                .replace(R.id.frameLayoutStart, new MapFragment())
+                .replace(R.id.root, new MapFragment())
                 .commit();
     }
 
