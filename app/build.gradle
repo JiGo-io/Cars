@@ -46,6 +46,7 @@ dependencies {
 
     //OkHttp3
     implementation 'com.squareup.okhttp3:okhttp:4.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
 
     //Retrofit + Adapter-RxJava2
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
@@ -64,4 +65,9 @@ dependencies {
     //Dagger 2
     implementation 'com.google.dagger:dagger:2.27'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
+
+    //maps
+
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services:7.5.0'
 }

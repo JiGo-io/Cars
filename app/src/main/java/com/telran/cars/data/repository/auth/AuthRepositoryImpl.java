@@ -39,9 +39,8 @@ public class AuthRepositoryImpl implements AuthRepository {
 
     @Override
     public Completable remindPassword(String returnPath) {
-        return Completable.fromSingle(
-                api.remindPassword(returnPath).doOnSuccess(this::onRemingPasswordSuccess)
-        );
+        return
+                api.remindPassword(returnPath);
     }
 
     private void onAuthorizationSuccess(Response<UserDtoForUser> response) throws IOException {
@@ -68,14 +67,14 @@ public class AuthRepositoryImpl implements AuthRepository {
         }
     }
 
-    private void onRemingPasswordSuccess(Response response) throws IOException {
+    private void onRemindPasswordSuccess(Response response) throws IOException {
         if (response.isSuccessful()) {
 //            storeProvider.saveToken(response.body().getToken());
-            Log.d("TAG", "onRemingPasswordSuccess: " + response.body().toString());
+            Log.d("TAG", "onRemindPasswordSuccess: " + response.body().toString());
         } else if (response.code() == 400 || response.code() == 404) {
             throw new RuntimeException(response.errorBody().string());
         } else {
-            Log.e("TAG", "onRemingPasswordSuccess: " + response.errorBody().string());
+            Log.e("TAG", "onRemindPasswordSuccess: " + response.errorBody().string());
             throw new RuntimeException("Server error! Call to Support");
         }
     }

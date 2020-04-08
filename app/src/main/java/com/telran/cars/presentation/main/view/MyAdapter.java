@@ -59,13 +59,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 public void onClick(View v) {
                     if (listener != null){
                         int pos = getAdapterPosition();
-                        listener.onClick(pos, list.get(pos));
+                        listener.onClickAdapter(pos, list.get(pos));
                     }
                 }
             });
         }
     }
     interface OnRowClickListener{
-        void onClick(int position, Person p);
+        void onClickAdapter(int position, Person p);
     }
 }

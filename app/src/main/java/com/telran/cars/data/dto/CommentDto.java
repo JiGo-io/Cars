@@ -1,5 +1,7 @@
 package com.telran.cars.data.dto;
 
+import android.util.Log;
+
 public class CommentDto {
     private String first_name;
     private String second_name;
