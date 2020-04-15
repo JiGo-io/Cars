@@ -8,14 +8,19 @@ import com.telran.cars.data.provider.store.StoreProvider;
 import com.telran.cars.data.provider.web.ApiRx;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.Observable;
 import retrofit2.Response;
 
 public class WithoutAuthRepositoryImpl implements WithoutAuthRepository {
     private static final String TAG = "WithoutAuthRepository";
     private ApiRx api;
     private StoreProvider storeProvider;
+    List<CarForUsersDto> list = new ArrayList<>();
+
 
     public WithoutAuthRepositoryImpl(ApiRx api) {
         this.api = api;
@@ -56,15 +61,13 @@ public class WithoutAuthRepositoryImpl implements WithoutAuthRepository {
     }
 
     @Override
-    public Completable getThreeBestCar() {
-        return Completable.fromSingle(
-                api.getThreeBestCar().doOnSuccess(this::onGetThreeBestCarSuccess)
-        );
+    public Observable<List<CarForUsersDto>> getThreeBestCar() {
+        return api.getThreeBestCar();
     }
 
-    private void onGetThreeBestCarSuccess(Response<CarForUsersDto[]> response) throws IOException {
+    private void onGetThreeBestCarSuccess(Response<List<CarForUsersDto>> response) throws IOException {
         if (response.isSuccessful()) {
-            Log.d(TAG, "onGetThreeBestCarSuccess: " + response.body().toString());
+            Log.d(TAG, "onGetThreeBestCarSuccess: " + response.body());
         } else if (response.code() == 404) {
             throw new RuntimeException(response.errorBody().string());
         } else {
@@ -72,4 +75,5 @@ public class WithoutAuthRepositoryImpl implements WithoutAuthRepository {
             throw new RuntimeException("Server error! Call to Support");
         }
     }
+
 }

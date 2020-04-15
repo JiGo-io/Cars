@@ -6,13 +6,21 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.telran.cars.App;
 import com.telran.cars.business.withoutauth.WithoutAuthInteractor;
+
+import com.telran.cars.data.dto.CarForUsersDto;
+import com.telran.cars.data.provider.store.StoreProvider;
 import com.telran.cars.di.withoutauth.WithoutAuthModule;
 import com.telran.cars.presentation.main.view.MainFragment;
+import com.telran.cars.presentation.main.view.MyAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
@@ -21,9 +29,11 @@ public class MainSearchPresentor extends MvpPresenter<MainFragment> {
     @Inject
     WithoutAuthInteractor interactor;
     Disposable disposable;
+    List<CarForUsersDto> carsList;
 
     public MainSearchPresentor() {
         App.get().plus(new WithoutAuthModule()).inject(this);
+        carsList = new ArrayList<>();
     }
 
     public void getCarByDateLocationPrice(Boolean ascending,
@@ -46,14 +56,8 @@ public class MainSearchPresentor extends MvpPresenter<MainFragment> {
     private void getSuccess() {
         getViewState().showNextView();
     }
-    public void getThreeBestCar(){
-        disposable = interactor.getThreeBestCar()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> getThreeBestCarSuccess(), throwable -> {
-                    Log.e(TAG, "getThreeBestCar: ", throwable);
-                });
-    }
+
+
 
     private void getThreeBestCarSuccess() {
         Log.d(TAG, "getThreeBestCarSuccess: success");
@@ -66,5 +70,16 @@ public class MainSearchPresentor extends MvpPresenter<MainFragment> {
 //            disposable.dispose();
 //        }
         App.get().clearWithoutAuthComponent();
+    }
+
+    public List<CarForUsersDto> getThreeBestCar() {
+        disposable = interactor.getThreeBestCar()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((Consumer<List<CarForUsersDto>>) cars ->{
+                    carsList.addAll(cars);
+                    Log.d(TAG, "getThreeBestCar: " + carsList.toString());
+                });
+        return carsList;
     }
 }

@@ -1,6 +1,11 @@
 package com.telran.cars.data.repository.withoutauth;
 
+import com.telran.cars.data.dto.CarForUsersDto;
+
+import java.util.List;
+
 import io.reactivex.Completable;
+import io.reactivex.Observable;
 
 public interface WithoutAuthRepository {
     Completable getCarByDateLocationPrice(Boolean ascending,
@@ -12,5 +17,5 @@ public interface WithoutAuthRepository {
                                           Number maxAmount,
                                           Number minAmount,
                                           String startDate);
-    Completable getThreeBestCar();
+    Observable<List<CarForUsersDto>> getThreeBestCar();
 }

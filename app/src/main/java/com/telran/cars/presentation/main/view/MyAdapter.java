@@ -1,30 +1,34 @@
 package com.telran.cars.presentation.main.view;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
 import com.telran.cars.R;
+import com.telran.cars.data.dto.CarForUsersDto;
 import com.telran.cars.data.dto.test.Person;
+import com.telran.cars.presentation.main.presenter.MainSearchPresentor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private List<Person> list;
+    private List<CarForUsersDto> list = new ArrayList<>();
     private  OnRowClickListener listener;
+    private Context context;
 
-    public MyAdapter() {
-        list = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
-            list.add(new Person("Person " + i, "Phone " + i));
-
-        }
+    public MyAdapter(Context context) {
+        this.context = context;
     }
 
     @NonNull
@@ -37,9 +41,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Person p = list.get(position);
-        holder.nameTxt.setText(p.getName());
-        holder.phoneTxt.setText(p.getPhone());
+        CarForUsersDto car = list.get(position);
+
+//        String url = car.getImage_url()[0];
+//        Picasso.get().load(url).into(holder.image);
+        holder.nameTxt.setText(car.getModel());
+        holder.phoneTxt.setText(car.getSerial_number());
+    }
+    public void setCars(@Nullable List<CarForUsersDto> cars){
+        if (cars == null){
+            return;
+        }
+        list.clear();
+        list.addAll(cars);
+        Log.d("MY_TAG", "setCars: ");
     }
 
     @Override
@@ -50,10 +65,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView nameTxt;
         TextView phoneTxt;
+        ImageView image;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTxt = itemView.findViewById(R.id.nameTxt);
             phoneTxt = itemView.findViewById(R.id.phoneTxt);
+            image = itemView.findViewById(R.id.avatarImg);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -66,6 +83,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
     }
     interface OnRowClickListener{
-        void onClickAdapter(int position, Person p);
+        void onClickAdapter(int position, CarForUsersDto car);
     }
 }

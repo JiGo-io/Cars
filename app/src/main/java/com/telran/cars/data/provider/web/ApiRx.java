@@ -19,9 +19,12 @@ import com.telran.cars.data.dto.UserBaseDto;
 import com.telran.cars.data.dto.UserDtoForUser;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+
 import io.reactivex.Completable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -54,7 +57,7 @@ public interface ApiRx {
                                @Query("serial_number") String serialNumber);
 
     @GET("/car/best")
-    Single<Response<CarForUsersDto[]>> getThreeBestCar();
+    Observable<List<CarForUsersDto>> getThreeBestCar();
 
     @GET("/user/cars")
     Single<Response<CarFullDto>> getOwnerCars(@Header("Authorization") String token);
