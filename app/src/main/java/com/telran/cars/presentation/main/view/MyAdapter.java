@@ -26,7 +26,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private  OnRowClickListener listener;
     private Context context;
 
-
     public MyAdapter(Context context) {
         this.context = context;
     }
@@ -42,9 +41,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         CarForUsersDto car = list.get(position);
-
-//        String url = car.getImage_url()[0];
-//        Picasso.get().load(url).into(holder.image);
+        String url = car.getImage_url()[0];
+        Picasso.get().load(url).into(holder.image);
         holder.nameTxt.setText(car.getModel());
         holder.phoneTxt.setText(car.getSerial_number());
     }

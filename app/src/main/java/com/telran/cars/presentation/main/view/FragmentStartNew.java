@@ -59,20 +59,18 @@ public class FragmentStartNew extends MvpAppCompatFragment implements MainFragme
         rv = view.findViewById(R.id.my_rv);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false);
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
-        cars = presentor.getThreeBestCar();
+
         rv.setLayoutManager(layoutManager);
         rv.addItemDecoration(divider);
+        presentor.getThreeBestCar();
         return view;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void displayCars(List<CarForUsersDto> listCars) {
         adapter = new MyAdapter(requireContext());
-        Log.d("MY_TAG", "onActivityCreated: " + cars.toString());
-        adapter.setCars(cars);
+        adapter.setCars(listCars);
         rv.setAdapter(adapter);
-
     }
 
     @Override
@@ -88,7 +86,7 @@ public class FragmentStartNew extends MvpAppCompatFragment implements MainFragme
             Number maxAmount = 10000.0;
             Number minAmount = 0.0;
 //        String startDate = inputFrom.getText().toString();
-            String startDate = "2020-04-10 12:00";
+            String startDate = "2020-04-30 12:00";
             presentor.getCarByDateLocationPrice(ascending, currentPage, endDate, itemsOnPage, latitude, longitude, maxAmount, minAmount, startDate);
         }
     }

@@ -72,14 +72,15 @@ public class MainSearchPresentor extends MvpPresenter<MainFragment> {
         App.get().clearWithoutAuthComponent();
     }
 
-    public List<CarForUsersDto> getThreeBestCar() {
+    public void getThreeBestCar() {
         disposable = interactor.getThreeBestCar()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((Consumer<List<CarForUsersDto>>) cars ->{
-                    carsList.addAll(cars);
-                    Log.d(TAG, "getThreeBestCar: " + carsList.toString());
+//                    carsList.addAll(cars);
+                    getViewState().displayCars(cars);
+                    Log.d(TAG, "getThreeBestCar: " + cars.toString());
                 });
-        return carsList;
     }
+
 }
