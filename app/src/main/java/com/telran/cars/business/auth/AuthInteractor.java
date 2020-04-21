@@ -4,6 +4,6 @@ import io.reactivex.Completable;
 
 public interface AuthInteractor {
     Completable onLogin(String token);
-    Completable onRegistration(String email, String password);
-    Completable remindPassword(String ReturnPath);
+    Completable onRegistration(String token, String firstName, String secondName);
+    Completable remindPassword(String returnPath);
 }

@@ -40,6 +40,26 @@ public class AuthPresenter extends MvpPresenter<IAuthFragment>{
                 });
     }
 
+    public void onRegistration(String email, String password, String firstName, String secondName) {
+        token = Credentials.basic(email,password);
+        disposable = interactor.onRegistration(token, firstName, secondName)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> onSuccess(), throwable -> {
+                    Log.e(TAG, "onRegistration: ", throwable);
+                });
+    }
+
+    public void remindPassword(String email) {
+        String mail = email.toLowerCase();
+        disposable = interactor.remindPassword(mail)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> onSuccess(), throwable -> {
+                    Log.e(TAG, "remindPassword: ", throwable);
+                });
+    }
+
     private void onSuccess() {
         Log.d(TAG, "onSuccess: ");
         getViewState().showNextView();

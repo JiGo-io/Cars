@@ -1,6 +1,12 @@
 package com.telran.cars.business.withoutauth;
+import com.telran.cars.data.dto.CarForUsersDto;
 import com.telran.cars.data.repository.withoutauth.WithoutAuthRepository;
+
+import java.util.List;
+
+
 import io.reactivex.Completable;
+import io.reactivex.Observable;
 
 public class WithoutAuthInteractorImpl implements WithoutAuthInteractor {
     WithoutAuthRepository repository;
@@ -31,9 +37,10 @@ public class WithoutAuthInteractorImpl implements WithoutAuthInteractor {
     }
 
     @Override
-    public Completable getThreeBestCar() {
+    public Observable<List<CarForUsersDto>> getThreeBestCar() {
         return repository.getThreeBestCar();
     }
+
 
 
 }

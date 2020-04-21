@@ -1,6 +1,10 @@
 package com.telran.cars.business.withoutauth;
 
+import com.telran.cars.data.dto.CarForUsersDto;
+
+
 import io.reactivex.Completable;
+import io.reactivex.Observable;
 
 public interface WithoutAuthInteractor {
 
@@ -13,5 +17,6 @@ public interface WithoutAuthInteractor {
                                           Number maxAmount,
                                           Number minAmount,
                                           String startDate);
-    Completable getThreeBestCar();
+    Observable getThreeBestCar();
+
 }

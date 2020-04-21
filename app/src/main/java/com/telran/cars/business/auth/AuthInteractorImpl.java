@@ -19,12 +19,12 @@ public class AuthInteractorImpl implements AuthInteractor {
     }
 
     @Override
-    public Completable onRegistration(String email, String password) {
-        return null;
+    public Completable onRegistration(String token, String firstName, String secondName) {
+        return repository.onRegistration(token, firstName, secondName);
     }
 
     @Override
-    public Completable remindPassword(String ReturnPath) {
-        return null;
+    public Completable remindPassword(String returnPath) {
+        return repository.remindPassword(returnPath);
     }
 }

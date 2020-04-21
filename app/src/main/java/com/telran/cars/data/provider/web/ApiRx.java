@@ -19,8 +19,12 @@ import com.telran.cars.data.dto.UserBaseDto;
 import com.telran.cars.data.dto.UserDtoForUser;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+
+import io.reactivex.Completable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -34,9 +38,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiRx {
-
-
-
 
     //Car_Controller
     @GET("/car")
@@ -56,7 +57,7 @@ public interface ApiRx {
                                @Query("serial_number") String serialNumber);
 
     @GET("/car/best")
-    Single<Response<CarForUsersDto[]>> getThreeBestCar();
+    Observable<List<CarForUsersDto>> getThreeBestCar();
 
     @GET("/user/cars")
     Single<Response<CarFullDto>> getOwnerCars(@Header("Authorization") String token);
@@ -137,10 +138,6 @@ public interface ApiRx {
     @POST("/image")
     Single<Response<ImageDto>> downloadImage(@Body ImageDto image);
 
-    //Logger_Controller
-    @GET("/logger")
-    Single<Response<String>> getLoggers(@Query("password") String password);
-
     //Reservation_Controller
     @POST("/car/payment")
     Single<Response> paymentForRegistration(@Header("Authorization") String token,
@@ -191,6 +188,6 @@ public interface ApiRx {
     @GET("/user/login")
     Single<Response<UserDtoForUser>> authorizationUser(@Header("Authorization") String token);
 
-    @POST("/user/verify")
-    Single<Response> remindPassword(@Header("Return-path") String token);
+    @GET("/user/verify")
+    Completable remindPassword(@Header("Return-path") String token);
 }
