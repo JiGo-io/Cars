@@ -1,8 +1,12 @@
 package com.telran.cars.data.dto;
 
-import java.util.Arrays;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class CarForUsersDto {
+import java.util.Arrays;
+import java.util.List;
+
+public class CarForUsersDto implements Parcelable {
     private String serial_number;
     private String make;
     private String model;
@@ -187,5 +191,78 @@ public class CarForUsersDto {
                 ", statistics=" + statistics +
                 ", comments=" + Arrays.toString(comments) +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(serial_number);
+        dest.writeString(make);
+        dest.writeString(model);
+        dest.writeString(year);
+        dest.writeString(engine);
+        dest.writeString(fuel);
+        dest.writeString(gear);
+        dest.writeString(wheels_drive);
+        dest.writeInt(horsepower);
+        dest.writeInt(torque);
+        dest.writeInt(doors);
+        dest.writeInt(seats);
+        dest.writeString(car_class);
+        dest.writeFloat(fuel_consumption);
+        dest.writeStringArray(features);
+        dest.writeDouble(price_per_day);
+        dest.writeDouble(distance_included);
+        dest.writeString(about);
+        dest.writeValue(pick_up_place);
+        dest.writeStringArray(image_url);
+        dest.writeValue(owner);
+        dest.writeArray(booked_periods);
+        dest.writeArray(reserved_periods);
+        dest.writeValue(statistics);
+        dest.writeArray(comments);
+    }
+    public static final Parcelable.Creator<CarForUsersDto> CREATOR = new Parcelable.Creator<CarForUsersDto>(){
+
+        @Override
+        public CarForUsersDto createFromParcel(Parcel source) {
+            return new CarForUsersDto(source);
+        }
+
+        @Override
+        public CarForUsersDto[] newArray(int size) {
+            return new CarForUsersDto[size];
+        }
+    };
+
+    private CarForUsersDto(Parcel p) {
+        serial_number = p.readString();
+        make = p.readString();
+        model = p.readString();
+        year = p.readString();
+        engine = p.readString();
+        fuel = p.readString();
+        gear = p.readString();
+        wheels_drive = p.readString();
+        horsepower = p.readInt();
+        torque = p.readInt();
+        doors = p.readInt();
+        seats = p.readInt();
+        car_class = p.readString();
+        fuel_consumption = p.readFloat();
+        features = p.createStringArray();
+        price_per_day = p.readDouble();
+        distance_included = p.readDouble();
+        about = p.readString();
+        pick_up_place = (PickUpPlaceDto) p.readValue(null);
+        owner = (OwnerDtoForCar) p.readValue(null);
+        booked_periods = (BookedPeriodDateDto[]) p.readArray(null);
+        reserved_periods = (ReservedPeriodDto[]) p.readArray(null);
+        statistics = (StatisticsDto) p.readValue(null);
+        comments = (CommentDto[]) p.readArray(null);
     }
 }

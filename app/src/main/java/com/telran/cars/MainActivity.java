@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.root, FragmentStartNew.newInstance())
+                    .addToBackStack(null)
                     .commit();
         }
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     loginFragment.setArguments(bundle);
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.root, loginFragment)
+                            .addToBackStack(null)
                             .commit();
                 } else if (id == R.id.singUp) {
                     LoginFragment loginFragment = LoginFragment.newInstance();
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     loginFragment.setArguments(bundle);
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.root, loginFragment)
+                            .addToBackStack(null)
                             .commit();
                 } else if (id == R.id.favorites) {
                     Toast.makeText(MainActivity.this, "5", Toast.LENGTH_SHORT).show();

@@ -75,7 +75,7 @@ public interface ApiRx {
     Single<Response<JsonNode>> getFilters();
 
     @GET("/search")
-    Single<Response<ResponseCarsFiltersDto>> getCarByDateLocationPrice(@Query("ascending") Boolean ascending,
+    Observable<ResponseCarsFiltersDto> getCarByDateLocationPrice(@Query("ascending") Boolean ascending,
                                                                 @Query("current_page") Integer currentPage,
                                                                 @Query("end_date") String endDate,
                                                                 @Query("items_on_page") Integer itemsOnPage,

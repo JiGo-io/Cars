@@ -1,11 +1,11 @@
 package com.telran.cars.business.withoutauth;
 import com.telran.cars.data.dto.CarForUsersDto;
+import com.telran.cars.data.dto.ResponseCarsFiltersDto;
 import com.telran.cars.data.repository.withoutauth.WithoutAuthRepository;
 
 import java.util.List;
 
 
-import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 public class WithoutAuthInteractorImpl implements WithoutAuthInteractor {
@@ -16,15 +16,15 @@ public class WithoutAuthInteractorImpl implements WithoutAuthInteractor {
     }
 
     @Override
-    public Completable getCarByDateLocationPrice(Boolean ascending,
-                                                 Integer currentPage,
-                                                 String endDate,
-                                                 Integer itemsOnPage,
-                                                 Number latitude,
-                                                 Number longitude,
-                                                 Number maxAmount,
-                                                 Number minAmount,
-                                                 String startDate) {
+    public Observable <ResponseCarsFiltersDto> getCarByDateLocationPrice(Boolean ascending,
+                                                                         Integer currentPage,
+                                                                         String endDate,
+                                                                         Integer itemsOnPage,
+                                                                         Number latitude,
+                                                                         Number longitude,
+                                                                         Number maxAmount,
+                                                                         Number minAmount,
+                                                                         String startDate) {
         return repository.getCarByDateLocationPrice(ascending,
                 currentPage,
                 endDate,
