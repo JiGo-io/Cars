@@ -28,7 +28,7 @@ public class WithoutAuthRepositoryImpl implements WithoutAuthRepository {
 
 
     @Override
-    public Completable getCarByDateLocationPrice(Boolean ascending,
+    public Observable<ResponseCarsFiltersDto> getCarByDateLocationPrice(Boolean ascending,
                                                  Integer currentPage,
                                                  String endDate,
                                                  Integer itemsOnPage,
@@ -37,7 +37,7 @@ public class WithoutAuthRepositoryImpl implements WithoutAuthRepository {
                                                  Number maxAmount,
                                                  Number minAmount,
                                                  String startDate) {
-        return Completable.fromSingle(
+        return
                 api.getCarByDateLocationPrice(ascending,
                         currentPage,
                         endDate,
@@ -46,8 +46,7 @@ public class WithoutAuthRepositoryImpl implements WithoutAuthRepository {
                         longitude,
                         maxAmount,
                         minAmount,
-                        startDate).doOnSuccess(response -> onGetCarByDateLocationPriceSuccess(response))
-        );
+                        startDate);
     }
     private void onGetCarByDateLocationPriceSuccess(Response<ResponseCarsFiltersDto> response) throws IOException {
         if (response.isSuccessful()) {

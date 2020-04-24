@@ -59,7 +59,6 @@ public class LoginFragment extends MvpAppCompatFragment implements IAuthFragment
         agreeText = view.findViewById(R.id.agreeText);
         forgotText = view.findViewById(R.id.forgotText);
         clickText = view.findViewById(R.id.clickText);
-//        clickText.setPaintFlags(clickText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         yallaBtn = view.findViewById(R.id.yallaBtn);
         restoreBtn = view.findViewById(R.id.restoreBtn);
         visible(key);
@@ -100,6 +99,7 @@ public class LoginFragment extends MvpAppCompatFragment implements IAuthFragment
     public void showNextView() {
         Objects.requireNonNull(getFragmentManager()).beginTransaction()
                 .replace(R.id.root, new MapFragment())
+                .addToBackStack(null)
                 .commit();
     }
 

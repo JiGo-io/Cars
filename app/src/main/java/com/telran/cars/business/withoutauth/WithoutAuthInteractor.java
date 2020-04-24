@@ -8,7 +8,7 @@ import io.reactivex.Observable;
 
 public interface WithoutAuthInteractor {
 
-    Completable getCarByDateLocationPrice(Boolean ascending,
+    Observable getCarByDateLocationPrice(Boolean ascending,
                                           Integer currentPage,
                                           String endDate,
                                           Integer itemsOnPage,

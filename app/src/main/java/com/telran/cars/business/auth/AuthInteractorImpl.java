@@ -13,7 +13,6 @@ public class AuthInteractorImpl implements AuthInteractor {
 
     @Override
     public Completable onLogin(String token) {
-
         return repository.onLogin(token);
 
     }

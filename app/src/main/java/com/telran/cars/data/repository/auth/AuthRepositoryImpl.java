@@ -39,8 +39,7 @@ public class AuthRepositoryImpl implements AuthRepository {
 
     @Override
     public Completable remindPassword(String returnPath) {
-        return
-                api.remindPassword(returnPath);
+        return api.remindPassword(returnPath);
     }
 
     private void onAuthorizationSuccess(Response<UserDtoForUser> response) throws IOException {

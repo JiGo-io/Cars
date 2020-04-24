@@ -1,11 +1,11 @@
 package com.telran.cars.presentation.main.view;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,12 +19,10 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.material.textfield.TextInputEditText;
 import com.telran.cars.R;
-import com.telran.cars.business.withoutauth.WithoutAuthInteractorImpl;
 import com.telran.cars.data.dto.CarForUsersDto;
-import com.telran.cars.data.dto.test.Person;
-import com.telran.cars.data.provider.store.StoreProvider;
-import com.telran.cars.data.repository.withoutauth.WithoutAuthRepositoryImpl;
-import com.telran.cars.presentation.main.presenter.MainSearchPresentor;
+import com.telran.cars.data.dto.CarsFiltersDto;
+import com.telran.cars.data.dto.ResponseCarsFiltersDto;
+import com.telran.cars.presentation.main.presenter.MainSearchPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +31,10 @@ import java.util.Objects;
 public class FragmentStartNew extends MvpAppCompatFragment implements MainFragment, View.OnClickListener, MyAdapter.OnRowClickListener {
     TextInputEditText inputFrom, inputLocation, inputTill;
     AppCompatButton yallaBtn;
+    ProgressBar myProgress;
     @InjectPresenter
-    MainSearchPresentor presentor;
+    MainSearchPresenter presenter;
     MyAdapter adapter;
-    List<CarForUsersDto> cars;
     RecyclerView rv;
 
     public FragmentStartNew() {
@@ -54,6 +52,7 @@ public class FragmentStartNew extends MvpAppCompatFragment implements MainFragme
         inputFrom = view.findViewById(R.id.inputFrom);
         inputLocation = view.findViewById(R.id.inputLocation);
         inputTill = view.findViewById(R.id.inputTill);
+        myProgress = view.findViewById(R.id.myProgress);
         yallaBtn = view.findViewById(R.id.yallaBtn);
         yallaBtn.setOnClickListener(this);
         rv = view.findViewById(R.id.my_rv);
@@ -62,7 +61,7 @@ public class FragmentStartNew extends MvpAppCompatFragment implements MainFragme
 
         rv.setLayoutManager(layoutManager);
         rv.addItemDecoration(divider);
-        presentor.getThreeBestCar();
+        presenter.getThreeBestCar();
         return view;
     }
 
@@ -80,41 +79,52 @@ public class FragmentStartNew extends MvpAppCompatFragment implements MainFragme
             Integer currentPage = 1;
 //        String endDate = inputTill.getText().toString();
             String endDate = "2020-08-01 12:00";
-            Integer itemsOnPage = 3;
+            Integer itemsOnPage = 7;
             Number latitude = 32.0879;
             Number longitude = 34.7272;
             Number maxAmount = 10000.0;
             Number minAmount = 0.0;
 //        String startDate = inputFrom.getText().toString();
             String startDate = "2020-04-30 12:00";
-            presentor.getCarByDateLocationPrice(ascending, currentPage, endDate, itemsOnPage, latitude, longitude, maxAmount, minAmount, startDate);
+            presenter.getCarByDateLocationPrice(ascending, currentPage, endDate, itemsOnPage, latitude, longitude, maxAmount, minAmount, startDate);
         }
     }
 
     @Override
-    public void showProgress() { }
+    public void showProgress() {
+        myProgress.setVisibility(View.VISIBLE);
+        yallaBtn.setEnabled(false);
+        inputFrom.setEnabled(false);
+        inputLocation.setEnabled(false);
+        inputTill.setEnabled(false);
+    }
 
     @Override
-    public void hideProgress() { }
+    public void hideProgress() {
+        myProgress.setVisibility(View.INVISIBLE);
+        yallaBtn.setEnabled(true);
+        inputFrom.setEnabled(true);
+        inputLocation.setEnabled(true);
+        inputTill.setEnabled(true);
+    }
 
     @Override
     public void showError(String error) { }
 
     @Override
-    public void showNextView() {
+    public void showNextView(ResponseCarsFiltersDto responseCars) {
+        MapFragment mapFragment = MapFragment.newInstance();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("cars", responseCars);
+        mapFragment.setArguments(bundle);
         Objects.requireNonNull(getFragmentManager()).beginTransaction()
-                .replace(R.id.root, new MapFragment())
+                .replace(R.id.root, mapFragment)
+                .addToBackStack(null)
                 .commit();
     }
 
     @Override
     public void hideErrorDialog() {
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
 
     }
 

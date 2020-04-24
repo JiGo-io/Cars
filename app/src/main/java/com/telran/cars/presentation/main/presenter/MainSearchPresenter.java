@@ -8,12 +8,13 @@ import com.telran.cars.App;
 import com.telran.cars.business.withoutauth.WithoutAuthInteractor;
 
 import com.telran.cars.data.dto.CarForUsersDto;
-import com.telran.cars.data.provider.store.StoreProvider;
+import com.telran.cars.data.dto.CarsFiltersDto;
+import com.telran.cars.data.dto.ResponseCarsFiltersDto;
 import com.telran.cars.di.withoutauth.WithoutAuthModule;
 import com.telran.cars.presentation.main.view.MainFragment;
-import com.telran.cars.presentation.main.view.MyAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,14 +25,14 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
-public class MainSearchPresentor extends MvpPresenter<MainFragment> {
-    private static final String TAG = "MainSearchPresentor";
+public class MainSearchPresenter extends MvpPresenter<MainFragment> {
+    private static final String TAG = "MainSearchPresenter";
     @Inject
     WithoutAuthInteractor interactor;
     Disposable disposable;
-    List<CarForUsersDto> carsList;
+    ArrayList<CarsFiltersDto> carsList;
 
-    public MainSearchPresentor() {
+    public MainSearchPresenter() {
         App.get().plus(new WithoutAuthModule()).inject(this);
         carsList = new ArrayList<>();
     }
@@ -45,31 +46,15 @@ public class MainSearchPresentor extends MvpPresenter<MainFragment> {
                                           Number maxAmount,
                                           Number minAmount,
                                           String startDate) {
-    disposable = interactor.getCarByDateLocationPrice(ascending, currentPage, endDate, itemsOnPage, latitude, longitude, maxAmount, minAmount, startDate)
+        getViewState().showProgress();
+        disposable = interactor.getCarByDateLocationPrice(ascending, currentPage, endDate, itemsOnPage, latitude, longitude, maxAmount, minAmount, startDate)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(() -> getSuccess(),throwable -> {
-                Log.e(TAG, "getCarByDateLocationPrice: ", throwable );
-            });
-    }
-
-    private void getSuccess() {
-        getViewState().showNextView();
-    }
-
-
-
-    private void getThreeBestCarSuccess() {
-        Log.d(TAG, "getThreeBestCarSuccess: success");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-//        if (disposable != null){
-//            disposable.dispose();
-//        }
-        App.get().clearWithoutAuthComponent();
+            .subscribe((Consumer<ResponseCarsFiltersDto>)responseCars ->{
+                getViewState().hideProgress();
+                getViewState().showNextView(responseCars);
+            Log.d(TAG, "getCarByDateLocationPrice: " + responseCars.toString());
+        });
     }
 
     public void getThreeBestCar() {
@@ -77,10 +62,18 @@ public class MainSearchPresentor extends MvpPresenter<MainFragment> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((Consumer<List<CarForUsersDto>>) cars ->{
-//                    carsList.addAll(cars);
                     getViewState().displayCars(cars);
                     Log.d(TAG, "getThreeBestCar: " + cars.toString());
                 });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (disposable != null){
+            disposable.dispose();
+        }
+        App.get().clearWithoutAuthComponent();
     }
 
 }
