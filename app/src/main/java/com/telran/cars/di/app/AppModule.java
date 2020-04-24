@@ -3,6 +3,7 @@ package com.telran.cars.di.app;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.telran.cars.data.interactor.Interactor;
 import com.telran.cars.data.provider.store.SprefStoreProvider;
 import com.telran.cars.data.provider.store.StoreProvider;
 import com.telran.cars.data.provider.web.ApiRx;
@@ -70,4 +71,8 @@ public class AppModule {
     StoreProvider provideStore(Context context){
         return new SprefStoreProvider(context);
     }
+
+    @Provides
+    @Singleton
+    Interactor provideInteractor(){return new Interactor();}
 }

@@ -112,13 +112,9 @@ public class FragmentStartNew extends MvpAppCompatFragment implements MainFragme
     public void showError(String error) { }
 
     @Override
-    public void showNextView(ResponseCarsFiltersDto responseCars) {
-        MapFragment mapFragment = MapFragment.newInstance();
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("cars", responseCars);
-        mapFragment.setArguments(bundle);
+    public void showNextView() {
         Objects.requireNonNull(getFragmentManager()).beginTransaction()
-                .replace(R.id.root, mapFragment)
+                .replace(R.id.root, new MapFragment())
                 .addToBackStack(null)
                 .commit();
     }

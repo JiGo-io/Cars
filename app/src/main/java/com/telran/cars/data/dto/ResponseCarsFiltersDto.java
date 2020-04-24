@@ -1,11 +1,9 @@
 package com.telran.cars.data.dto;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import java.util.Arrays;
 
-public class ResponseCarsFiltersDto implements Parcelable {
+public class ResponseCarsFiltersDto {
     String current_page;
     String items_on_page;
     String items_total;
@@ -58,38 +56,5 @@ public class ResponseCarsFiltersDto implements Parcelable {
                 ", items_total=" + items_total +
                 ", cars=" + Arrays.toString(cars) +
                 '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(current_page);
-        dest.writeString(items_on_page);
-        dest.writeString(items_total);
-        dest.writeArray(cars);
-    }
-
-    public static final Parcelable.Creator<ResponseCarsFiltersDto> CREATOR = new Parcelable.Creator<ResponseCarsFiltersDto>(){
-
-        @Override
-        public ResponseCarsFiltersDto createFromParcel(Parcel source) {
-            return new ResponseCarsFiltersDto(source);
-        }
-
-        @Override
-        public ResponseCarsFiltersDto[] newArray(int size) {
-            return new ResponseCarsFiltersDto[size];
-        }
-    };
-
-    private ResponseCarsFiltersDto (Parcel p) {
-        current_page = p.readString();
-        items_on_page = p.readString();
-        items_total = p.readString();
-        cars = (CarsFiltersDto[]) p.readArray(null);
     }
 }
