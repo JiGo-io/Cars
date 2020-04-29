@@ -52,13 +52,13 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-        Bundle bundle = getArguments();
-        ResponseCarsFiltersDto responseCars = bundle.getParcelable("cars");
-        adapter = new MapAdapter(requireContext());
-        adapter.setCars(Arrays.asList(responseCars.getCars()));
+        adapter = new MapAdapter(requireContext(), this);
+        adapter.setCars(presenter.carsFilters());
+        // setMap----------------------------------------
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        //------------------------------------------------
 
         rvMap = view.findViewById(R.id.rvMap);
         rvAllCar = view.findViewById(R.id.rvAllCar);
@@ -67,7 +67,6 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
         rvMap.setLayoutManager(layoutManager);
         rvMap.addItemDecoration(divider);
         rvMap.setAdapter(adapter);
-
 
         FloatingActionButton listBtn = view.findViewById(R.id.listBtn);
         listBtn.setOnClickListener(new View.OnClickListener() {
@@ -103,9 +102,17 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 //        map.moveCamera(CameraUpdateFactory.newLatLng(lng));
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(lng, DEFAULT_ZOOM));
     }
-    @Override
-    public void showNextView(CarsFiltersDto car) {
 
+    @Override
+    public void showNextView(int position) {
+        CarInfoFragment carInfoFragment = CarInfoFragment.newInstanse();
+        Bundle bundle = new Bundle();
+        bundle.putInt("carInfo", position);
+        carInfoFragment.setArguments(bundle);
+        getFragmentManager().beginTransaction()
+                .replace(R.id.root, carInfoFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
@@ -115,6 +122,6 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     @Override
     public void onClickAdapter(int position, CarsFiltersDto car) {
-        showNextView(car);
+        showNextView(position);
     }
 }

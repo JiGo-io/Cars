@@ -5,6 +5,8 @@ import com.arellomobile.mvp.MvpPresenter;
 import com.telran.cars.App;
 import com.telran.cars.business.withoutauth.WithoutAuthInteractor;
 import com.telran.cars.data.dto.CarForUsersDto;
+import com.telran.cars.data.dto.CarsFiltersDto;
+import com.telran.cars.data.interactor.Interactor;
 import com.telran.cars.di.withoutauth.WithoutAuthModule;
 import com.telran.cars.presentation.main.view.IMapFragment;
 import com.telran.cars.presentation.main.view.MapFragment;
@@ -20,12 +22,20 @@ import io.reactivex.disposables.Disposable;
 public class MapPresenter extends MvpPresenter<IMapFragment> {
     @Inject
     WithoutAuthInteractor interactor;
+    @Inject
+    Interactor interactorCars;
     Disposable disposable;
-    List<CarForUsersDto> carsList;
+    List<CarsFiltersDto> carsList;
 
     public MapPresenter() {
         App.get().plus(new WithoutAuthModule()).inject(this);
         carsList = new ArrayList<>();
     }
+
+    public List<CarsFiltersDto> carsFilters() {
+        return interactorCars.getCarsFilters();
+    }
+
+
 
 }

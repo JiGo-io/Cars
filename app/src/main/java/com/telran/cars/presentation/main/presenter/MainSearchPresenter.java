@@ -10,6 +10,7 @@ import com.telran.cars.business.withoutauth.WithoutAuthInteractor;
 import com.telran.cars.data.dto.CarForUsersDto;
 import com.telran.cars.data.dto.CarsFiltersDto;
 import com.telran.cars.data.dto.ResponseCarsFiltersDto;
+import com.telran.cars.data.interactor.Interactor;
 import com.telran.cars.di.withoutauth.WithoutAuthModule;
 import com.telran.cars.presentation.main.view.MainFragment;
 
@@ -29,6 +30,8 @@ public class MainSearchPresenter extends MvpPresenter<MainFragment> {
     private static final String TAG = "MainSearchPresenter";
     @Inject
     WithoutAuthInteractor interactor;
+    @Inject
+    Interactor interactorCars;
     Disposable disposable;
     ArrayList<CarsFiltersDto> carsList;
 
@@ -52,8 +55,11 @@ public class MainSearchPresenter extends MvpPresenter<MainFragment> {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe((Consumer<ResponseCarsFiltersDto>)responseCars ->{
                 getViewState().hideProgress();
-                getViewState().showNextView(responseCars);
-            Log.d(TAG, "getCarByDateLocationPrice: " + responseCars.toString());
+                List<CarsFiltersDto> cars = Arrays.asList(responseCars.getCars());
+                interactorCars.setCarsFilters(cars);
+                getViewState().showNextView();
+
+            Log.d(TAG, "getCarByDateLocationPrice: " + cars.toString());
         });
     }
 

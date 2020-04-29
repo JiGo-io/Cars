@@ -5,7 +5,6 @@ import com.telran.cars.data.dto.ResponseCarsFiltersDto;
 
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 public interface WithoutAuthRepository {
@@ -19,4 +18,6 @@ public interface WithoutAuthRepository {
                                                                  Number minAmount,
                                                                  String startDate);
     Observable<List<CarForUsersDto>> getThreeBestCar();
+
+
 }

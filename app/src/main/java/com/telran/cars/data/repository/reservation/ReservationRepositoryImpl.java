@@ -157,12 +157,12 @@ public class ReservationRepositoryImpl implements ReservationRepository {
         }
     }
 
-    @Override
-    public Completable reservationCarById(String token, ReservationDto dto, String serialNumber) {
-        return Completable.fromSingle(
-                api.reservationCarById(token,dto,serialNumber).doOnSuccess(this::onReservationCarByIdSuccess)
-        );
-    }
+//    @Override
+//    public Completable reservationCarById(String token, ReservationDto dto, String serialNumber) {
+//        return Completable.fromSingle(
+//                api.reservationCarById(token,dto,serialNumber).doOnSuccess(this::onReservationCarByIdSuccess)
+//        );
+//    }
 
     private void onReservationCarByIdSuccess(Response<CarFullDto> response) throws IOException {
         if (response.isSuccessful()) {

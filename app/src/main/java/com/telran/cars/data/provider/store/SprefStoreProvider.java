@@ -29,16 +29,21 @@ public class SprefStoreProvider implements StoreProvider {
 
     @Override
     public boolean clearToken() {
-        return context.getSharedPreferences(SP_AUTH,Context.MODE_PRIVATE)
+//        return context.getSharedPreferences(SP_AUTH,Context.MODE_PRIVATE)
+//                .edit()
+//                .clear()
+//                .commit();
+
+        return context.getSharedPreferences(SP_AUTH, Context.MODE_PRIVATE)
                 .edit()
-                .clear()
+                .putString(TOKEN_KEY, "")
                 .commit();
     }
 
     @Override
     public String getToken() {
         return context.getSharedPreferences(SP_AUTH,Context.MODE_PRIVATE)
-                .getString(TOKEN_KEY,null);
+                .getString(TOKEN_KEY,"");
     }
 
 }

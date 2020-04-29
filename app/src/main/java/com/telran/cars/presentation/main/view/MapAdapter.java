@@ -25,15 +25,16 @@ public class MapAdapter extends RecyclerView.Adapter<MapAdapter.MyViewHolder> {
     private  OnRowClickListener listener;
     private Context context;
 
-    public MapAdapter(Context context) {
+    public MapAdapter(Context context, OnRowClickListener listener) {
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.threebestcar_row,parent,false);
+                .inflate(R.layout.threebestcar_map_row,parent,false);
         return new MyViewHolder(view);
     }
 
@@ -42,9 +43,16 @@ public class MapAdapter extends RecyclerView.Adapter<MapAdapter.MyViewHolder> {
         CarsFiltersDto car = list.get(position);
         String url = car.getImage_url()[0];
         Picasso.get().load(url).into(holder.image);
-        holder.nameTxt.setText(car.getModel());
-        holder.phoneTxt.setText(car.getSerial_number());
+        String seats = "";
+        seats = String.valueOf(car.getSeats());
+        String dors = "";
+        dors = String.valueOf(car.getDoors());
+        holder.seatTxt.setText(seats);
+        holder.dorsTxt.setText(dors);
+        holder.transTxt.setText(car.getWheels_drive());
+        holder.modelTxt.setText(car.getMake() + " " + car.getModel());
     }
+
     public void setCars(@Nullable List<CarsFiltersDto> cars){
         if (cars == null){
             return;
@@ -59,17 +67,19 @@ public class MapAdapter extends RecyclerView.Adapter<MapAdapter.MyViewHolder> {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView nameTxt;
-        TextView phoneTxt;
+        TextView seatTxt, dorsTxt, transTxt, modelTxt;
         ImageView image;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTxt = itemView.findViewById(R.id.nameTxt);
-            phoneTxt = itemView.findViewById(R.id.phoneTxt);
-            image = itemView.findViewById(R.id.avatarImg);
+            seatTxt = itemView.findViewById(R.id.seatTxt);
+            dorsTxt = itemView.findViewById(R.id.dorsTxt);
+            transTxt = itemView.findViewById(R.id.transTxt);
+            modelTxt = itemView.findViewById(R.id.modelTxt);
+            image = itemView.findViewById(R.id.carImg);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d("MY_TAG", "onClick: itemView" + listener.toString());
                     if (listener != null){
                         int pos = getAdapterPosition();
                         listener.onClickAdapter(pos, list.get(pos));

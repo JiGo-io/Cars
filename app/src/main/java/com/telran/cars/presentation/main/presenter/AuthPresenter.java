@@ -18,31 +18,27 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.Credentials;
 
 @InjectViewState
-public class AuthPresenter extends MvpPresenter<IAuthFragment>{
+public class AuthPresenter extends MvpPresenter<IAuthFragment> {
     private static final String TAG = "AuthPresentor";
     @Inject
     AuthInteractor interactor;
     Disposable disposable;
-    String token;
 
-    public AuthPresenter(){
+    public AuthPresenter() {
         App.get().plus(new AuthModule()).inject(this);
     }
 
-    public void onLogin(String email, String password){
-        token = Credentials.basic(email,password);
-        Log.d("MY_TAG", "onLogin: " + token);
-        disposable = interactor.onLogin(token)
+    public void onLogin(String email, String password) {
+        disposable = interactor.onLogin(email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> onSuccess(), throwable -> {
-                    Log.e(TAG, "onLogin: ", throwable );
+                    Log.e(TAG, "onLogin: ", throwable);
                 });
     }
 
     public void onRegistration(String email, String password, String firstName, String secondName) {
-        token = Credentials.basic(email,password);
-        disposable = interactor.onRegistration(token, firstName, secondName)
+        disposable = interactor.onRegistration(email, password, firstName, secondName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> onSuccess(), throwable -> {
@@ -62,13 +58,14 @@ public class AuthPresenter extends MvpPresenter<IAuthFragment>{
 
     private void onSuccess() {
         Log.d(TAG, "onSuccess: ");
-        getViewState().showNextView();
+//        getViewState().showNextView();
+        getViewState().onDestroyView();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (disposable != null){
+        if (disposable != null) {
             disposable.dispose();
         }
         App.get().clearAuthComponent();

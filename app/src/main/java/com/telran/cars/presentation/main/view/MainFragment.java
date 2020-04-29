@@ -12,7 +12,7 @@ public interface MainFragment extends MvpView {
     void showProgress();
     void hideProgress();
     void showError(String error);
-    void showNextView(ResponseCarsFiltersDto responseCars);
+    void showNextView();
     void hideErrorDialog();
     void displayCars(List<CarForUsersDto> listCars);
 }
