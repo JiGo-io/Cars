@@ -1,6 +1,7 @@
 package com.telran.cars.data.provider.web;
 
 import com.telran.cars.data.dto.BookedCarsDtoForUser;
+import com.telran.cars.data.dto.BookedPeriodBaseDto;
 import com.telran.cars.data.dto.CarForUsersDto;
 import com.telran.cars.data.dto.CarFullDto;
 import com.telran.cars.data.dto.CarFullUploadRequestDto;
@@ -11,6 +12,7 @@ import com.telran.cars.data.dto.ImageDto;
 import com.telran.cars.data.dto.JsonNode;
 import com.telran.cars.data.dto.OwnerCarDtoForCar;
 import com.telran.cars.data.dto.PageResponseWithFilter;
+import com.telran.cars.data.dto.PersonWhoBookedDto;
 import com.telran.cars.data.dto.RegistrationDto;
 import com.telran.cars.data.dto.ReservationDto;
 import com.telran.cars.data.dto.ReservedPeriodDto;
@@ -144,9 +146,9 @@ public interface ApiRx {
                                             @Query("bookedId") String bookedId);
 
     @POST("/car/reservation")
-    Single<Response<CarFullDto>> reservationCarById(@Header("Authorization") String token,
-                                                    @Body ReservationDto dto,
-                                                    @Query("serial_number") String serialNumber);
+    Single<Response<BookedPeriodBaseDto>> reserv(@Header("Authorization") String token,
+                                                             @Body ReservationDto dto,
+                                                             @Query("serial_number") String serialNumber);
 
     @DELETE("/car/reservation")
     Single<Response<CarFullDto>> reservationCancellation(@Header("Authorization") String token,

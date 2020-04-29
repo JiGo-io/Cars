@@ -52,7 +52,7 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-        adapter = new MapAdapter(requireContext());
+        adapter = new MapAdapter(requireContext(), this);
         adapter.setCars(presenter.carsFilters());
         // setMap----------------------------------------
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
@@ -102,9 +102,17 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 //        map.moveCamera(CameraUpdateFactory.newLatLng(lng));
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(lng, DEFAULT_ZOOM));
     }
-    @Override
-    public void showNextView(CarsFiltersDto car) {
 
+    @Override
+    public void showNextView(int position) {
+        CarInfoFragment carInfoFragment = CarInfoFragment.newInstanse();
+        Bundle bundle = new Bundle();
+        bundle.putInt("carInfo", position);
+        carInfoFragment.setArguments(bundle);
+        getFragmentManager().beginTransaction()
+                .replace(R.id.root, carInfoFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
@@ -114,6 +122,6 @@ public class MapFragment extends MvpAppCompatFragment implements OnMapReadyCallb
 
     @Override
     public void onClickAdapter(int position, CarsFiltersDto car) {
-        showNextView(car);
+        showNextView(position);
     }
 }

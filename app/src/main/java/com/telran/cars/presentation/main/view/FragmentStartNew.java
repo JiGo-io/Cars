@@ -31,7 +31,6 @@ import java.util.Objects;
 public class FragmentStartNew extends MvpAppCompatFragment implements MainFragment, View.OnClickListener, MyAdapter.OnRowClickListener {
     TextInputEditText inputFrom, inputLocation, inputTill;
     AppCompatButton yallaBtn;
-    ProgressBar myProgress;
     @InjectPresenter
     MainSearchPresenter presenter;
     MyAdapter adapter;
@@ -52,7 +51,6 @@ public class FragmentStartNew extends MvpAppCompatFragment implements MainFragme
         inputFrom = view.findViewById(R.id.inputFrom);
         inputLocation = view.findViewById(R.id.inputLocation);
         inputTill = view.findViewById(R.id.inputTill);
-        myProgress = view.findViewById(R.id.myProgress);
         yallaBtn = view.findViewById(R.id.yallaBtn);
         yallaBtn.setOnClickListener(this);
         rv = view.findViewById(R.id.my_rv);
@@ -77,22 +75,21 @@ public class FragmentStartNew extends MvpAppCompatFragment implements MainFragme
         if (v.getId() == R.id.yallaBtn) {
             Boolean ascending = false;
             Integer currentPage = 1;
-//        String endDate = inputTill.getText().toString();
-            String endDate = "2020-08-01 12:00";
-            Integer itemsOnPage = 7;
-            Number latitude = 32.0879;
-            Number longitude = 34.7272;
+        String endDate = inputTill.getText().toString();
+//            String endDate = "2020-05-12 12:00";
+            Integer itemsOnPage = 9;
+            Number latitude = 32.071208;
+            Number longitude = 34.780613;
             Number maxAmount = 10000.0;
             Number minAmount = 0.0;
-//        String startDate = inputFrom.getText().toString();
-            String startDate = "2020-04-30 12:00";
+        String startDate = inputFrom.getText().toString();
+//            String startDate = "2020-05-10 12:00";
             presenter.getCarByDateLocationPrice(ascending, currentPage, endDate, itemsOnPage, latitude, longitude, maxAmount, minAmount, startDate);
         }
     }
 
     @Override
     public void showProgress() {
-        myProgress.setVisibility(View.VISIBLE);
         yallaBtn.setEnabled(false);
         inputFrom.setEnabled(false);
         inputLocation.setEnabled(false);
@@ -101,7 +98,6 @@ public class FragmentStartNew extends MvpAppCompatFragment implements MainFragme
 
     @Override
     public void hideProgress() {
-        myProgress.setVisibility(View.INVISIBLE);
         yallaBtn.setEnabled(true);
         inputFrom.setEnabled(true);
         inputLocation.setEnabled(true);

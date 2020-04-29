@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<CarForUsersDto> list = new ArrayList<>();
-    private  OnRowClickListener listener;
+    private OnRowClickListener listener;
     private Context context;
 
     public MyAdapter(Context context) {
@@ -32,7 +32,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.threebestcar_row,parent,false);
+                .inflate(R.layout.threebestcar_row, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -40,12 +40,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         CarForUsersDto car = list.get(position);
         String url = car.getImage_url()[0];
+        if (url == null) {
+            url = car.getImage_url()[1];
+        }
         Picasso.get().load(url).into(holder.image);
-        holder.nameTxt.setText(car.getModel());
-        holder.phoneTxt.setText(car.getSerial_number());
+        String seats = "";
+        seats = String.valueOf(car.getSeats());
+        String dors = "";
+        dors = String.valueOf(car.getDoors());
+        holder.seatTxt.setText(seats);
+        holder.dorsTxt.setText(dors);
+        holder.transTxt.setText(car.getWheels_drive());
+        holder.modelTxt.setText(car.getMake() + " " + car.getModel());
     }
-    public void setCars(@Nullable List<CarForUsersDto> cars){
-        if (cars == null){
+
+    public void setCars(@Nullable List<CarForUsersDto> cars) {
+        if (cars == null) {
             return;
         }
         list.clear();
@@ -57,19 +67,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView nameTxt;
-        TextView phoneTxt;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView seatTxt, dorsTxt, transTxt, modelTxt;
         ImageView image;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTxt = itemView.findViewById(R.id.nameTxt);
-            phoneTxt = itemView.findViewById(R.id.phoneTxt);
-            image = itemView.findViewById(R.id.avatarImg);
+            seatTxt = itemView.findViewById(R.id.seatTxt);
+            dorsTxt = itemView.findViewById(R.id.dorsTxt);
+            transTxt = itemView.findViewById(R.id.transTxt);
+            modelTxt = itemView.findViewById(R.id.modelTxt);
+            image = itemView.findViewById(R.id.carImg);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null){
+                    if (listener != null) {
                         int pos = getAdapterPosition();
                         listener.onClickAdapter(pos, list.get(pos));
                     }
@@ -77,7 +89,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             });
         }
     }
-    interface OnRowClickListener{
+
+    interface OnRowClickListener {
         void onClickAdapter(int position, CarForUsersDto car);
     }
 }

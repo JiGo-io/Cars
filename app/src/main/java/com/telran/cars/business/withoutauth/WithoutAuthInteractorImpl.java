@@ -40,7 +40,4 @@ public class WithoutAuthInteractorImpl implements WithoutAuthInteractor {
     public Observable<List<CarForUsersDto>> getThreeBestCar() {
         return repository.getThreeBestCar();
     }
-
-
-
 }

@@ -2,12 +2,12 @@ package com.telran.cars.data.dto;
 
 public class BookedPeriodBaseDto {
     private double amount;
-    private String booking_period;
+    private String booking_date;
     private String order_number;
 
-    public BookedPeriodBaseDto(double amount, String booking_period, String order_number) {
+    public BookedPeriodBaseDto(double amount, String booking_date, String order_number) {
         this.amount = amount;
-        this.booking_period = booking_period;
+        this.booking_date = booking_date;
         this.order_number = order_number;
     }
 
@@ -20,11 +20,11 @@ public class BookedPeriodBaseDto {
     }
 
     public String getBooking_period() {
-        return booking_period;
+        return booking_date;
     }
 
-    public void setBooking_period(String booking_period) {
-        this.booking_period = booking_period;
+    public void setBooking_period(String booking_date) {
+        this.booking_date = booking_date;
     }
 
     public String getOrder_number() {
@@ -39,7 +39,7 @@ public class BookedPeriodBaseDto {
     public String toString() {
         return "BookedPeriodBaseDto{" +
                 "amount=" + amount +
-                ", booking_period='" + booking_period + '\'' +
+                ", booking_date='" + booking_date + '\'' +
                 ", order_number='" + order_number + '\'' +
                 '}';
     }

@@ -43,7 +43,7 @@ public interface ReservationRepository {
     // Reservation_Controller
 
     Completable paymentForReservation(String token, String bookedId);
-    Completable reservationCarById(String token, ReservationDto dto, String serialNumber);
+//    Completable reservationCarById(String token, ReservationDto dto, String serialNumber);
     Completable reservationCancellation(String token, String serialNumber, String startDateTime);
     Completable unlockCarById(String token, ReservedPeriodDto[] dto, String serialNumber);
     Completable lockCarById(String token, ReservedPeriodDto[] dto, String serialNumber);

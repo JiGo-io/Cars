@@ -2,6 +2,8 @@ package com.telran.cars.data.repository.withoutauth;
 
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import com.telran.cars.data.dto.CarForUsersDto;
 import com.telran.cars.data.dto.ResponseCarsFiltersDto;
 import com.telran.cars.data.provider.store.StoreProvider;
@@ -18,7 +20,6 @@ import retrofit2.Response;
 public class WithoutAuthRepositoryImpl implements WithoutAuthRepository {
     private static final String TAG = "WithoutAuthRepository";
     private ApiRx api;
-    private StoreProvider storeProvider;
     List<CarForUsersDto> list = new ArrayList<>();
 
 

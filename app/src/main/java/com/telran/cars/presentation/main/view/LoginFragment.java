@@ -113,4 +113,9 @@ public class LoginFragment extends MvpAppCompatFragment implements IAuthFragment
                 clickText.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
 }

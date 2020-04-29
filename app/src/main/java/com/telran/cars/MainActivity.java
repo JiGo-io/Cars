@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         dl.addDrawerListener(abdt);
         abdt.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.logo_light);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

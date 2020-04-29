@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:background="#FFFF"
+    tools:context=".presentation.main.view.CarInfoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/modelTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="24sp"
+            android:textColor="#062639"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/modelTxt" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvCar">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Engine:" />
+
+            <TextView
+                android:id="@+id/engineTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#062639" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="HP:" />
+
+            <TextView
+                android:id="@+id/hpTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#062639" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fuel:" />
+
+            <TextView
+                android:id="@+id/fuelTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#062639" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Torque:" />
+
+            <TextView
+                android:id="@+id/torqueTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#062639" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Gear:" />
+
+            <TextView
+                android:id="@+id/gearTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#062639" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Doors:" />
+
+            <TextView
+                android:id="@+id/doorsTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#062639" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fuel cons:" />
+
+            <TextView
+                android:id="@+id/fuelConsTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#062639" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Seats:" />
+
+            <TextView
+                android:id="@+id/seatsTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#062639" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="WD:" />
+
+            <TextView
+                android:id="@+id/wdTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#062639" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Class:" />
+
+            <TextView
+                android:id="@+id/classTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#062639" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:gravity="clip_horizontal"
+            android:text="Description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
+
+        <TextView
+            android:id="@+id/descriptionTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textColor="#062639"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/calcLayout"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="24dp"
+                android:gravity="center_horizontal"
+                android:text="Let's calculate cost"
+                android:textColor="#EA2340"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:text="Car receiving:"/>
+
+            <TextView
+                android:text="Marmorek 14-18, Tel Aviv-Yafo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/startDateTxt"
+                android:text="10/05/2020    12:00"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:text="Car return:"/>
+
+            <TextView
+                android:text="Marmorek 14-18, Tel Aviv-Yafo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/endDateTxt"
+                android:text="12/05/2020    12:00"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/payLayout"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="24dp"
+                android:gravity="center_horizontal"
+                android:text="Let's pay the rent"
+                android:textColor="#EA2340"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:text="Price car:"/>
+
+            <TextView
+                android:id="@+id/priceTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/sumTxt" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/rentBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:text="Rent Now!"
+            android:backgroundTint="#ea2340"
+            android:textSize="24sp"
+            android:textColor="#FFFF"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/calcBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:text="Calculate"
+            android:backgroundTint="#ea2340"
+            android:textColor="#FFFF"
+            android:textSize="24sp"
+            android:visibility="gone"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/payBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:text="Pay now!"
+            android:backgroundTint="#ea2340"
+            android:textColor="#FFFF"
+            android:textSize="24sp"
+            android:visibility="gone"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text" />
+
+    </LinearLayout>
+</ScrollView>

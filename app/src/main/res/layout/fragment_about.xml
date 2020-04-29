@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.main.view.AboutFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFF"
+        android:fillViewport="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:text="About you"
+                android:textColor="#EA2340"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/firstNameTxt"
+                android:text="Alex"
+                android:textSize="20sp"
+                android:textColor="#062639"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/lastNameTxt"
+                android:text="Volkov"
+                android:textSize="20sp"
+                android:textColor="#062639"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"/>
+            <TextView
+                android:id="@+id/emailTxt"
+                android:text="volkovalex@mail.ru"
+                android:textSize="20sp"
+                android:textColor="#062639"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/editBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Edit info"
+                android:backgroundTint="#ea2340"
+                android:textSize="24sp"
+                android:textColor="#FFFF"
+                android:textAllCaps="false"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="Your last order"
+                android:textColor="#EA2340"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="16dp">
+                <TextView
+                    android:text="Amount:"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/amountTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="#062639"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="16dp">
+            <TextView
+                android:text="Booking Date"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/bookingDateTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#062639"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:text="Order Number"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/orderNumberTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#062639"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/img" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You can repeat your last order."
+                android:textSize="16dp"
+                android:textColor="#062639"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/repeatBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Repeat"
+                android:backgroundTint="#ea2340"
+                android:textSize="24sp"
+                android:textColor="#FFFF"
+                android:textAllCaps="false"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
